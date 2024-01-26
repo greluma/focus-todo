@@ -1,6 +1,10 @@
+import Home from "./pages/Home"
+
+
+// Esta pagina déjala para organizar las rutas con react-router-dom
 const App = () => {
   return (
-    <div>App</div>
+    <Home />
   )
 }
 export default App
