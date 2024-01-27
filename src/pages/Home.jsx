@@ -4,8 +4,7 @@ const Home = () => {
     return (
         <div>
             <div>
-                <button className="mt-8 bg-blue-500 text-white">Stats</button>
-
+                <button>Stats</button>
                 <button>Select a task</button>
             </div>
             <div>
