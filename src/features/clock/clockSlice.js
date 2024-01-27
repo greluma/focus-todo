@@ -1,25 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: 0,
+  countDownTime: { minutes: 30, seconds: 25 },
 };
 
 export const clockSlice = createSlice({
   name: "clock",
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1;
+    increment5: (state) => {
+      state.countDownTime.minutes += 5;
     },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    decrement5: (state) => {
+      if (state.countDownTime.minutes <= 0) {
+        return;
+      }
+      state.countDownTime.minutes -= 5;
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = clockSlice.actions;
+export const { increment5, decrement5 } = clockSlice.actions;
 
 export default clockSlice.reducer;
