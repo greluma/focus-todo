@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  countDownTime: { minutes: 30, seconds: 15 },
-  initialTime: { minutes: 30, seconds: 0 },
+  countDownTime: { minutes: 0, seconds: 5 },
+  initialTime: { minutes: 0, seconds: 5 },
   focusTime: false,
 };
 
@@ -22,7 +22,11 @@ export const clockSlice = createSlice({
     },
 
     decrement: (state, action) => {
-      if (state.countDownTime.minutes <= 0) {
+      // * Marca cuando el temporizador llega a 0
+      if (
+        state.countDownTime.minutes <= 0 &&
+        state.countDownTime.seconds <= 0
+      ) {
         return;
       }
       if (action.payload.unit === "min") {
