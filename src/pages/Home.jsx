@@ -17,9 +17,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeFocusTime, decrement, resetTimer, newIntervalId, clearIntervalHandler, handleShowBanner } from "../features/clock/clockSlice";
 import Banner from "../components/Banner";
 
-// TODO: Que la imagen de fondo cambie cada vez que acabe un Pomodoro
-// TODO: Que suene cuando el pomodoro llega a 0
-
 const Home = () => {
     const clockState = useSelector((state) => state.clock)
     const focusTime = clockState.focusTime
