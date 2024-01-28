@@ -1,16 +1,21 @@
-import Clock from "../components/Clock"
-import backgroundImage from '../assets/main-background.jpg';
+import { useState } from "react";
+// icons
 import { FaAngleDown } from "react-icons/fa6";
 import { FaPlay, FaPause, FaStop } from "react-icons/fa";
 import { CgSandClock } from "react-icons/cg";
 import { ImMusic } from "react-icons/im";
 import { BsClockHistory } from "react-icons/bs";
-import BtnHome from "../components/BtnHome";
-import { useDispatch, useSelector } from "react-redux";
-import { changeFocusTime, decrement, resetTimer } from "../features/clock/clockSlice";
-import HomeFocusBtn from "../components/HomeFocusBtn";
-import { useRef, useState } from "react";
 import { CiPlay1 } from "react-icons/ci";
+// assets
+import backgroundImage from '../assets/main-background.jpg';
+// components
+import Clock from "../components/Clock"
+import BtnHome from "../components/BtnHome";
+import HomeFocusBtn from "../components/HomeFocusBtn";
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import { changeFocusTime, decrement, resetTimer, newIntervalId, clearIntervalHandler } from "../features/clock/clockSlice";
+import Banner from "../components/Banner";
 
 // TODO: Que la imagen de fondo cambie cada vez que acabe un Pomodoro
 // TODO: Que suene cuando el pomodoro llega a 0
@@ -21,19 +26,17 @@ const Home = () => {
     const dispatch = useDispatch()
     const [continueOrFinish, setContinueOrFinish] = useState(false)
 
-    let intervalId = useRef();
-
     function startFocus() {
         setContinueOrFinish(false)
         dispatch(changeFocusTime(true));
-        intervalId.current = setInterval(() => {
-            dispatch(decrement({ unit: "sec", time: 1 }))
-        }, 1000);
+        dispatch(newIntervalId(setInterval(() => {
+            dispatch(decrement({ unit: "seconds", time: 1 }))
+        }, 1000)))
     }
 
     function pauseFocus() {
         dispatch(changeFocusTime(false));
-        clearInterval(intervalId.current)
+        dispatch(clearIntervalHandler())
         setContinueOrFinish(true)
     }
 
@@ -42,6 +45,7 @@ const Home = () => {
         setContinueOrFinish(false)
         dispatch(changeFocusTime(false));
         dispatch(resetTimer())
+        dispatch(clearIntervalHandler())
     }
 
     return (
