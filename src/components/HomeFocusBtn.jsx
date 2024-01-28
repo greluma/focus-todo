@@ -12,7 +12,7 @@ HomeFocusBtn.propTypes = {
   focusTime: PropTypes.bool,
   text: PropTypes.string.isRequired,
   icon: PropTypes.element.isRequired,
-  func: PropTypes.func.isRequired,
+  func: PropTypes.func,
   continueOrFinish: PropTypes.bool,
 };
 

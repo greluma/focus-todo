@@ -8,6 +8,7 @@ const initialState = {
   initialTime: initialStateTimer,
   focusTime: false,
   intervalId: null,
+  showBanner: false,
 };
 
 export const clockSlice = createSlice({
@@ -17,6 +18,10 @@ export const clockSlice = createSlice({
     clearIntervalHandler: (state) => {
       clearInterval(state.intervalId);
       state.intervalId = null;
+    },
+
+    handleShowBanner: (state) => {
+      state.showBanner = !state.showBanner;
     },
 
     newIntervalId: (state, action) => {
@@ -39,6 +44,7 @@ export const clockSlice = createSlice({
         state.countDownTime.minutes = 0;
         state.countDownTime.seconds = 0;
         clearInterval(state.intervalId);
+        // TODO: Sonido de final de pomodoro
         return;
       }
 
@@ -72,6 +78,7 @@ export const {
   resetTimer,
   newIntervalId,
   clearIntervalHandler,
+  handleShowBanner,
 } = clockSlice.actions;
 
 export default clockSlice.reducer;
