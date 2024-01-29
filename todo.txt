@@ -1,4 +1,7 @@
 TODO: 
-1 - Arreglar el diseño para el teléfono
+1 - Arreglar el diseño para el teléfono: 
+ - Solo faltan los botones de abajo 
+
+
 4 - Icono a la aplicación y el banner
 5 - Sonido cada vez que termine un pomodoro

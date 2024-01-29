@@ -61,11 +61,11 @@ const Home = () => {
                     <button className="text-3xl transition duration-200 text-slate-200 hover:translate-y-1 hover:scale-110 "><FaAngleDown /></button>
                     <button className="py-2 text-sm font-bold tracking-wider transition duration-500 ease-in-out rounded-full md:text-base bg-slate-700 text-slate-300 px-7 justify-self-center hover:bg-slate-300 hover:text-slate-700">{isSmallScreen ? 'Tarea...' : 'Seleccione una tarea...'}</button>
                 </div>
-                <div className="h-[65vh]  grid justify-center content-center grid-rows-5">
-                    <div className="flex items-center justify-center row-span-4">
+                <div className="h-[65vh]  grid justify-center content-center grid-rows-3 mt-4">
+                    <div className="flex items-center justify-center row-span-2">
                         <Clock />
                     </div>
-                    <div className="row-span-1 m-auto mt-4">
+                    <div className="row-span-1 m-auto">
                         <HomeFocusBtn focusTime={focusTime} continueOrFinish={continueOrFinish} icon={<FaPlay />} text="Comenzar a Enfocarse" func={startFocus} colorIcon={"limeGreen"} />
                         <HomeFocusBtn focusTime={!focusTime} icon={<FaPause />} text="Pausa" func={pauseFocus} colorIcon={"indianRed"} />
                         {continueOrFinish && <div className="flex gap-4"><HomeFocusBtn focusTime={focusTime} icon={<CiPlay1 />} text="Continuar" colorIcon={"limeGreen"} func={startFocus} /><HomeFocusBtn focusTime={focusTime} icon={<FaStop />} text="Terminar" func={setShowBanner} colorIcon={"indianRed"} /></div>}
