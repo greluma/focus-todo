@@ -1,6 +1,7 @@
 TODO: 
 1 - Arreglar el diseño para el teléfono: 
- - Solo faltan los botones de abajo 
+ - Solo faltan los botones de abajo
+ - El banner el tiempo que demora en salir y el tamaño 
 
 
 4 - Icono a la aplicación y el banner

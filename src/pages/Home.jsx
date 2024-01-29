@@ -56,12 +56,12 @@ const Home = () => {
 
     return (
         <>
-            <div className={`min-h-screen p-5 bg-center bg-cover transition duration-300 ease-in-out ${showBanner ? 'opacity-90' : ''}`} style={{ backgroundImage: `url(${backgroundImage})` }}>
+            <div className={`grid p-4 min-h-screen bg-center bg-cover transition duration-300 ease-in-out ${showBanner ? 'opacity-90' : ''}`} style={{ backgroundImage: `url(${backgroundImage})` }}>
                 <div className="grid grid-cols-3 m-auto justify-items-start">
-                    <button className="text-3xl transition duration-200 text-slate-200 hover:translate-y-1 hover:scale-110 "><FaAngleDown /></button>
+                    <button className="text-3xl md:text-4xl text-slate-200 animate-bounce hover:animate-none"><FaAngleDown /></button>
                     <button className="py-2 text-sm font-bold tracking-wider transition duration-500 ease-in-out rounded-full md:text-base bg-slate-700 text-slate-300 px-7 justify-self-center hover:bg-slate-300 hover:text-slate-700">{isSmallScreen ? 'Tarea...' : 'Seleccione una tarea...'}</button>
                 </div>
-                <div className="h-[50vh]  grid justify-center content-center gap-5 my-8">
+                <div className="h-[50vh] self-center grid justify-center content-center gap-5">
                     <div className="flex items-center justify-center">
                         <Clock />
                     </div>
@@ -71,14 +71,15 @@ const Home = () => {
                         {continueOrFinish && <div className="flex gap-4"><HomeFocusBtn focusTime={focusTime} icon={<CiPlay1 />} text="Continuar" colorIcon={"limeGreen"} func={startFocus} /><HomeFocusBtn focusTime={focusTime} icon={<FaStop />} text="Terminar" func={setShowBanner} colorIcon={"indianRed"} /></div>}
                     </div>
                 </div>
-                <div className="flex justify-center mt-6">
+                <div className="flex self-end justify-center gap-4 mb-4">
                     <BtnHome icon={<BsClockHistory />} text="pantalla completa" />
                     <BtnHome icon={<CgSandClock />} text="modo temporizador" />
                     <BtnHome icon={<ImMusic />} text="sonido de fondo" />
                     <BtnHome icon={<GrImage />} text="Fondo de Pantalla" />
                 </div>
-            </div>
-            {showBanner && <Banner setShowBanner={setShowBanner} stopFocus={stopFocus} />}
+            </div >
+            {showBanner && <Banner setShowBanner={setShowBanner} stopFocus={stopFocus} />
+            }
         </>
 
     )
