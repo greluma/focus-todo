@@ -1,5 +1,4 @@
 TODO: 
 1 - Arreglar el diseño para el teléfono
-2 - Agregar hover a los botones
-3 - Que la imagen de fondo cambie cada vez que acabe un Pomodoro
 4 - Icono a la aplicación y el banner
+5 - Sonido cada vez que termine un pomodoro
