@@ -7,16 +7,15 @@ import { GrImage } from "react-icons/gr";
 import { ImMusic } from "react-icons/im";
 import { BsClockHistory } from "react-icons/bs";
 import { CiPlay1 } from "react-icons/ci";
-// assets
-import backgroundImage from '../assets/main-background.jpg';
 // components
 import Clock from "../components/Clock"
 import BtnHome from "../components/BtnHome";
 import HomeFocusBtn from "../components/HomeFocusBtn";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { changeFocusTime, decrement, resetTimer, newIntervalId, clearIntervalHandler, handleShowBanner, setContinueOrFinish } from "../features/clock/clockSlice";
+import { changeFocusTime, decrement, resetTimer, newIntervalId, clearIntervalHandler, handleShowBanner, setContinueOrFinish, changeImage } from "../features/clock/clockSlice";
 import Banner from "../components/Banner";
+import newImage from '../utils/newImage';
 
 const Home = () => {
     const isSmallScreen = useMediaQuery({ maxWidth: 640 }); // sm: 640px
@@ -24,6 +23,7 @@ const Home = () => {
     const focusTime = clockState.focusTime
     const showBanner = clockState.showBanner
     const continueOrFinish = clockState.continueOrFinish;
+    const image = clockState.image;
     const dispatch = useDispatch()
 
     function startFocus() {
@@ -51,11 +51,14 @@ const Home = () => {
         dispatch(handleShowBanner())
     }
 
-    // transition ease-in-out duration-500 hover:bg-slate-300 hover:text-slate-700
+    async function handleChangeImage() {
+        const newImg = await newImage()
+        dispatch(changeImage(newImg))
+    }
 
     return (
         <>
-            <div className={`grid gap-4 p-4 min-h-[100vh] bg-center bg-cover transition duration-300 ease-in-out ${showBanner ? 'opacity-90' : ''}`} style={{ backgroundImage: `url(${backgroundImage})` }}>
+            <div className={`grid gap-4 p-4 min-h-[100vh] bg-center bg-cover transition duration-300 ease-in-out ${showBanner ? 'opacity-90' : ''}`} style={{ backgroundImage: `url(${image})` }}>
                 <div className="grid grid-cols-3 m-auto justify-items-start">
                     <button className="text-3xl md:text-4xl text-slate-200 animate-bounce hover:animate-none"><FaAngleDown /></button>
                     <button className="py-2 text-sm font-bold tracking-wider transition duration-500 ease-in-out rounded-full md:text-base bg-slate-700 text-slate-300 px-7 justify-self-center hover:bg-slate-300 hover:text-slate-700">{isSmallScreen ? 'Tarea...' : 'Seleccione una tarea...'}</button>
@@ -74,7 +77,7 @@ const Home = () => {
                     <BtnHome icon={<BsClockHistory />} text="pantalla completa" />
                     <BtnHome icon={<CgSandClock />} text="modo temporizador" />
                     <BtnHome icon={<ImMusic />} text="sonido de fondo" />
-                    <BtnHome icon={<GrImage />} text="Fondo de Pantalla" />
+                    <BtnHome icon={<GrImage />} text="Fondo de Pantalla" func={handleChangeImage} />
                 </div>
             </div >
             {showBanner && <Banner setShowBanner={setShowBanner} stopFocus={stopFocus} textoPrincipal='¿Terminar este pomodoro?' textoSecundario='¿Esta seguro de parar este temporizador?' />

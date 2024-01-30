@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import callToast from "../../utils/callToast";
+import background from "../../assets/main-background.jpg";
 
 function playAudio() {
   const audio = new Audio("./clock-alarm.mp3");
@@ -17,6 +18,7 @@ const initialState = {
   showBanner: false,
   continueOrFinish: false,
   totalMinutesFocus: initialStateTimer.minutes,
+  image: background,
 };
 
 export const clockSlice = createSlice({
@@ -77,9 +79,13 @@ export const clockSlice = createSlice({
       !state.focusTime && minutes > 0 && (state.initialTime[unit] -= time);
       state.countDownTime[unit] -= time;
       minutes <= 0 && (state.countDownTime.minutes = 0);
-      if (time === 5) {
+      if (time === 5 && minutes > 0) {
         state.totalMinutesFocus -= time;
       }
+    },
+
+    changeImage: (state, action) => {
+      state.image = action.payload;
     },
 
     changeFocusTime: (state, action) => {
@@ -102,6 +108,7 @@ export const {
   clearIntervalHandler,
   handleShowBanner,
   setContinueOrFinish,
+  changeImage,
 } = clockSlice.actions;
 
 export default clockSlice.reducer;
