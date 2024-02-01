@@ -20,7 +20,7 @@ const HomeFocusBtn = ({ focusTime, icon, text, func, continueOrFinish, colorIcon
       `}
       disabled={minutes === 0}
     >
-      {minutes === 0 ? "+ Añadir Tiempo +" : <><div className="mr-2 transition duration-100" style={{ color: isHovered ? `${colorIcon}` : '' }}>{icon}</div>{text}</>}
+      {minutes === 0 ? "Añadir Tiempo" : <><div className="mr-2 transition duration-100" style={{ color: isHovered ? `${colorIcon}` : '' }}>{icon}</div>{text}</>}
     </button>
   )
 }

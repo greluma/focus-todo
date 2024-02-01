@@ -11,4 +11,16 @@ function callToast(text, tipo = "success") {
   });
 }
 
+export function callFinishToast(minutes) {
+  if (minutes === 0) {
+    callToast(`Este Pomodoro fue muy corto para añadirlo`, "warning");
+  } else {
+    callToast(
+      `¡Felicidades! Has terminado un Pomodoro de ${minutes} ${
+        minutes > 1 ? "minutos" : "minuto"
+      }`
+    );
+  }
+}
+
 export default callToast;

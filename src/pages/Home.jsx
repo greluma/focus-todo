@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeFocusTime, decrement, resetTimer, newIntervalId, clearIntervalHandler, handleShowBanner, setContinueOrFinish, changeImage, increment, setTimeMode, setIsPomodoroActive } from "../features/clock/clockSlice";
 import Banner from "../components/Banner";
 import newImage from '../utils/newImage';
-import callToast from '../utils/callToast';
+import { callFinishToast } from '../utils/callToast';
 
 const Home = () => {
     const isSmallScreen = useMediaQuery({ maxWidth: 640 }); // sm: 640px
@@ -61,9 +61,7 @@ const Home = () => {
         dispatch(clearIntervalHandler())
         dispatch(setContinueOrFinish(false))
         dispatch(resetTimer())
-        if (timeMode === "cronometro" && minutes > 0) {
-            callToast(`¡Enhorabuena!. Has completado ${minutes} ${minutes > 1 ? "minutos" : "minuto"} de enfoque.`)
-        }
+        callFinishToast(minutes)
         dispatch(setIsPomodoroActive(false))
     }
 

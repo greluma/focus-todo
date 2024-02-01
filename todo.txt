@@ -1,1 +1,2 @@
-4 - Icono a la aplicación y el banner
+- Icono a la aplicación y el banner
+- Cambiar color de los iconos dependiendo del fondo

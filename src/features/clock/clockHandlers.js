@@ -1,4 +1,4 @@
-import callToast from "../../utils/callToast";
+import { callFinishToast } from "../../utils/callToast";
 import playAudio from "../../utils/playAudio";
 
 export function handlerTime(state, action, operation) {
@@ -41,15 +41,7 @@ export function handleFinishPomodoro(state) {
   clearInterval(state.intervalId);
   state.isPomodoroActive = false;
   playAudio();
-  if (totalMinutes === 0) {
-    callToast(`Este Pomodoro fue muy corto para añadirlo`);
-  } else {
-    callToast(
-      `¡Felicidades! Has terminado un Pomodoro de ${totalMinutes} ${
-        totalMinutes > 1 ? "minutos" : "minuto"
-      }`
-    );
-  }
+  callFinishToast(totalMinutes);
   state.totalMinutesFocus = state.initialTime.minutes;
   handlerResetTimer(state);
 }
