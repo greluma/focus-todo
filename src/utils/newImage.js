@@ -22,6 +22,4 @@ async function newImage() {
   return imageResult;
 }
 
-newImage();
-
 export default newImage;

@@ -18,6 +18,7 @@ import { changeFocusTime, decrement, resetTimer, newIntervalId, clearIntervalHan
 import Banner from "../components/Banner";
 import newImage from '../utils/newImage';
 import { callFinishToast } from '../utils/callToast';
+import ClockBanner from '../components/ClockBanner';
 
 const Home = () => {
     const { focusTime, showBanner, continueOrFinish, image, timeMode, isPomodoroActive, totalMinutesFocus } = useSelector((state) => state.clock)
@@ -97,6 +98,7 @@ const Home = () => {
             </div >
             {showBanner && <Banner setShowBanner={setShowBanner} stopFocus={stopFocus} textoPrincipal='¿Terminar este pomodoro?' textoSecundario='¿Esta seguro de parar este temporizador?' />
             }
+            <ClockBanner />
         </>
 
     )

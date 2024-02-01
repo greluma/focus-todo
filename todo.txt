@@ -1,3 +1,3 @@
 - Icono a la aplicación y el banner
 - Cambiar color de los iconos dependiendo del fondo
-- refactoriza las funciones de home y las llamadas al estado
+- Manejar la carga de la imagen con el loader de browser route
