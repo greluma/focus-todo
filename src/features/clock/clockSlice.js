@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import callToast from "../../utils/callToast";
 import background from "../../assets/main-background.jpg";
-
-function playAudio() {
-  const audio = new Audio("./clock-alarm.mp3");
-  audio.play();
-}
+import {
+  handleChangeMinute,
+  handleFinishPomodoro,
+  handlerResetTimer,
+  handlerTime,
+} from "./clockHandlers";
 
 // * Estado inicial del temporizador
-const initialStateTimer = { minutes: 0, seconds: 5 };
+const initialStateTimer = { minutes: 30, seconds: 0 };
 
 const initialState = {
   countDownTime: initialStateTimer,
@@ -19,6 +19,7 @@ const initialState = {
   continueOrFinish: false,
   totalMinutesFocus: initialStateTimer.minutes,
   image: background,
+  timeMode: "temporizador",
 };
 
 export const clockSlice = createSlice({
@@ -28,6 +29,16 @@ export const clockSlice = createSlice({
     clearIntervalHandler: (state) => {
       clearInterval(state.intervalId);
       state.intervalId = null;
+    },
+
+    setTimeMode: (state) => {
+      if (state.timeMode === "temporizador") {
+        state.timeMode = "cronometro";
+        state.countDownTime = { minutes: 0, seconds: 0 };
+      } else {
+        state.timeMode = "temporizador";
+        state.countDownTime = state.initialTime;
+      }
     },
 
     setContinueOrFinish: (state, action) => {
@@ -43,45 +54,31 @@ export const clockSlice = createSlice({
     },
 
     increment: (state, action) => {
-      const { time, unit } = action.payload;
-      // TODO (las siguientes 2 lineas se repiten en increment y decrement hay que refactorizar): Si el temporizador está en modo de descanso, se incrementa el tiempo inicial
-      !state.focusTime && (state.initialTime[unit] += time);
-      state.countDownTime[unit] += time;
-      state.totalMinutesFocus += time;
+      const { seconds } = state.countDownTime;
+
+      // * Marca el cambio de minuto y segundos
+      if (seconds === 59 && state.focusTime) {
+        handleChangeMinute(state, "increment");
+      }
+
+      handlerTime(state, action, "increment");
     },
 
     decrement: (state, action) => {
-      const { time, unit } = action.payload;
       const { minutes, seconds } = state.countDownTime;
 
       // * Marca cuando el temporizador llega a 0
       if (minutes <= 0 && seconds <= 0 && state.focusTime) {
-        state.countDownTime = state.initialTime;
-        state.focusTime = false;
-        state.continueOrFinish = false;
-        clearInterval(state.intervalId);
-        playAudio();
-        callToast(
-          `¡Felicidades! Has terminado un Pomodoro de ${state.totalMinutesFocus} minutos`
-        );
-        state.totalMinutesFocus = state.initialTime.minutes;
-
+        handleFinishPomodoro(state);
         return;
       }
 
       // * Marca el cambio de minuto y segundos
       if (seconds === 0 && state.focusTime) {
-        state.countDownTime.seconds = 60;
-        state.countDownTime.minutes -= 1;
+        handleChangeMinute(state, "decrement");
       }
 
-      // * Si el temporizador está en modo de descanso, se decrementa el tiempo inicial
-      !state.focusTime && minutes > 0 && (state.initialTime[unit] -= time);
-      state.countDownTime[unit] -= time;
-      minutes <= 0 && (state.countDownTime.minutes = 0);
-      if (time === 5 && minutes > 0) {
-        state.totalMinutesFocus -= time;
-      }
+      handlerTime(state, action, "decrement");
     },
 
     changeImage: (state, action) => {
@@ -93,8 +90,7 @@ export const clockSlice = createSlice({
     },
 
     resetTimer: (state) => {
-      state.countDownTime = state.initialTime;
-      state.totalMinutesFocus = state.initialTime.minutes;
+      handlerResetTimer(state);
     },
   },
 });
@@ -109,6 +105,7 @@ export const {
   handleShowBanner,
   setContinueOrFinish,
   changeImage,
+  setTimeMode,
 } = clockSlice.actions;
 
 export default clockSlice.reducer;

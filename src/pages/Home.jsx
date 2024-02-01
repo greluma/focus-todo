@@ -13,9 +13,10 @@ import BtnHome from "../components/BtnHome";
 import HomeFocusBtn from "../components/HomeFocusBtn";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { changeFocusTime, decrement, resetTimer, newIntervalId, clearIntervalHandler, handleShowBanner, setContinueOrFinish, changeImage } from "../features/clock/clockSlice";
+import { changeFocusTime, decrement, resetTimer, newIntervalId, clearIntervalHandler, handleShowBanner, setContinueOrFinish, changeImage, increment, setTimeMode } from "../features/clock/clockSlice";
 import Banner from "../components/Banner";
 import newImage from '../utils/newImage';
+import callToast from '../utils/callToast';
 
 const Home = () => {
     const isSmallScreen = useMediaQuery({ maxWidth: 640 }); // sm: 640px
@@ -24,14 +25,27 @@ const Home = () => {
     const showBanner = clockState.showBanner
     const continueOrFinish = clockState.continueOrFinish;
     const image = clockState.image;
+    const timeMode = clockState.timeMode;
+    const { minutes } = clockState.countDownTime;
     const dispatch = useDispatch()
 
-    function startFocus() {
+    function startFocus(operation) {
         dispatch(setContinueOrFinish(false))
         dispatch(changeFocusTime(true));
         dispatch(newIntervalId(setInterval(() => {
-            dispatch(decrement({ unit: "seconds", time: 1 }))
+            switch (operation) {
+                case "increment":
+                    dispatch(increment({ unit: "seconds", time: 1 }))
+                    break;
+                case "decrement":
+                    dispatch(decrement({ unit: "seconds", time: 1 }))
+                    break;
+                default:
+                    break;
+            }
         }, 1000)))
+
+
     }
 
     function pauseFocus() {
@@ -45,6 +59,9 @@ const Home = () => {
         dispatch(clearIntervalHandler())
         dispatch(setContinueOrFinish(false))
         dispatch(resetTimer())
+        if (timeMode === "cronometro" && minutes > 0) {
+            callToast(`¡Enhorabuena!. Has completado ${minutes} ${minutes > 1 ? "minutos" : "minuto"} de enfoque.`)
+        }
     }
 
     function setShowBanner() {
@@ -54,6 +71,10 @@ const Home = () => {
     async function handleChangeImage() {
         const newImg = await newImage()
         dispatch(changeImage(newImg))
+    }
+
+    function handleTimeMode() {
+        dispatch(setTimeMode())
     }
 
     return (
@@ -75,7 +96,7 @@ const Home = () => {
                 </div>
                 <div className="flex self-end justify-center gap-5">
                     <BtnHome icon={<BsClockHistory />} text="pantalla completa" />
-                    <BtnHome icon={<CgSandClock />} text="modo temporizador" />
+                    <BtnHome icon={<CgSandClock />} text={`modo ${timeMode === "temporizador" ? "cronometro" : "temporizador"}`} func={handleTimeMode} />
                     <BtnHome icon={<ImMusic />} text="sonido de fondo" />
                     <BtnHome icon={<GrImage />} text="Fondo de Pantalla" func={handleChangeImage} />
                 </div>

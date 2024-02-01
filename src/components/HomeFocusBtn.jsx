@@ -4,14 +4,18 @@ import { useSelector } from 'react-redux';
 
 const HomeFocusBtn = ({ focusTime, icon, text, func, continueOrFinish, colorIcon }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const { minutes } = useSelector((state) => state.clock.initialTime)
+  const clockState = useSelector((state) => state.clock)
+  const timeMode = clockState.timeMode;
+  const { minutes } = clockState.initialTime
+  const operation = timeMode === "temporizador" ? "decrement" : "increment";
+
 
   return (
     <button
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={func}
-      className={` ${minutes === 0 && "hover:bg-slate-400 hover:text-blue-950"} flex items-center justify-center py-2 font-bold tracking-wider rounded-full bg-slate-300 px-7 text-blue-950 ${focusTime || continueOrFinish ? "hidden" : ""} transition ease-in-out duration-500 hover:bg-slate-700 hover:text-slate-300 text-sm md:text-base 
+      onClick={() => { func(operation) }}
+      className={` flex items-center justify-center py-2 font-bold tracking-wider rounded-full bg-slate-300 px-7 text-blue-950 ${focusTime || continueOrFinish ? "hidden" : ""} transition ease-in-out duration-500 ${minutes === 0 ? "" : "hover:bg-slate-700 hover:text-slate-300"} text-sm md:text-base 
       
       `}
       disabled={minutes === 0}
