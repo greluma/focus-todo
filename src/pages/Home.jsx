@@ -7,13 +7,14 @@ import { GrImage } from "react-icons/gr";
 import { ImMusic } from "react-icons/im";
 import { BsClockHistory } from "react-icons/bs";
 import { CiPlay1 } from "react-icons/ci";
+import { TiStopwatch } from "react-icons/ti";
 // components
 import Clock from "../components/Clock"
 import BtnHome from "../components/BtnHome";
 import HomeFocusBtn from "../components/HomeFocusBtn";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { changeFocusTime, decrement, resetTimer, newIntervalId, clearIntervalHandler, handleShowBanner, setContinueOrFinish, changeImage, increment, setTimeMode } from "../features/clock/clockSlice";
+import { changeFocusTime, decrement, resetTimer, newIntervalId, clearIntervalHandler, handleShowBanner, setContinueOrFinish, changeImage, increment, setTimeMode, setIsPomodoroActive } from "../features/clock/clockSlice";
 import Banner from "../components/Banner";
 import newImage from '../utils/newImage';
 import callToast from '../utils/callToast';
@@ -27,6 +28,7 @@ const Home = () => {
     const image = clockState.image;
     const timeMode = clockState.timeMode;
     const { minutes } = clockState.countDownTime;
+    const isPomodoroActive = clockState.isPomodoroActive;
     const dispatch = useDispatch()
 
     function startFocus(operation) {
@@ -44,8 +46,8 @@ const Home = () => {
                     break;
             }
         }, 1000)))
-
-
+        dispatch(setIsPomodoroActive(true))
+        console.log(isPomodoroActive);
     }
 
     function pauseFocus() {
@@ -62,6 +64,7 @@ const Home = () => {
         if (timeMode === "cronometro" && minutes > 0) {
             callToast(`¡Enhorabuena!. Has completado ${minutes} ${minutes > 1 ? "minutos" : "minuto"} de enfoque.`)
         }
+        dispatch(setIsPomodoroActive(false))
     }
 
     function setShowBanner() {
@@ -96,7 +99,7 @@ const Home = () => {
                 </div>
                 <div className="flex self-end justify-center gap-5">
                     <BtnHome icon={<BsClockHistory />} text="pantalla completa" />
-                    <BtnHome icon={<CgSandClock />} text={`modo ${timeMode === "temporizador" ? "cronometro" : "temporizador"}`} func={handleTimeMode} />
+                    <BtnHome icon={timeMode === "temporizador" ? <TiStopwatch /> : <CgSandClock />} text={`modo ${timeMode === "temporizador" ? "cronometro" : "temporizador"}`} func={handleTimeMode} disable={isPomodoroActive} />
                     <BtnHome icon={<ImMusic />} text="sonido de fondo" />
                     <BtnHome icon={<GrImage />} text="Fondo de Pantalla" func={handleChangeImage} />
                 </div>

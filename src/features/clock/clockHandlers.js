@@ -35,13 +35,21 @@ export function handleChangeMinute(state, operation) {
 }
 
 export function handleFinishPomodoro(state) {
+  const totalMinutes = state.totalMinutesFocus;
   state.focusTime = false;
   state.continueOrFinish = false;
   clearInterval(state.intervalId);
+  state.isPomodoroActive = false;
   playAudio();
-  callToast(
-    `¡Felicidades! Has terminado un Pomodoro de ${state.totalMinutesFocus} minutos`
-  );
+  if (totalMinutes === 0) {
+    callToast(`Este Pomodoro fue muy corto para añadirlo`);
+  } else {
+    callToast(
+      `¡Felicidades! Has terminado un Pomodoro de ${totalMinutes} ${
+        totalMinutes > 1 ? "minutos" : "minuto"
+      }`
+    );
+  }
   state.totalMinutesFocus = state.initialTime.minutes;
   handlerResetTimer(state);
 }

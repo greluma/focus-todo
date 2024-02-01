@@ -17,9 +17,9 @@ const Clock = () => {
       </div>
       <div className="flex justify-center sm:px-4 gap-x-7">
         {timeMode === "temporizador" && <ClockSumRestBtn operacion="-" manageTime={decrement} />}
-        <ClockTimeInfo time={time?.minutes} unit="min" />
+        <ClockTimeInfo time={time?.minutes} unit="m" />
         <span className="text-2xl md:text-3xl xl:5xl text-[#FBFAF8] mt-4 font-bold">:</span>
-        <ClockTimeInfo time={time?.seconds} unit="sec" />
+        <ClockTimeInfo time={time?.seconds} unit="s" />
         {timeMode === "temporizador" && <ClockSumRestBtn operacion="+" manageTime={increment} />}
       </div>
     </div>

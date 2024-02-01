@@ -20,6 +20,7 @@ const initialState = {
   totalMinutesFocus: initialStateTimer.minutes,
   image: background,
   timeMode: "temporizador",
+  isPomodoroActive: false,
 };
 
 export const clockSlice = createSlice({
@@ -39,6 +40,10 @@ export const clockSlice = createSlice({
         state.timeMode = "temporizador";
         state.countDownTime = state.initialTime;
       }
+    },
+
+    setIsPomodoroActive: (state, action) => {
+      state.isPomodoroActive = action.payload;
     },
 
     setContinueOrFinish: (state, action) => {
@@ -106,6 +111,7 @@ export const {
   setContinueOrFinish,
   changeImage,
   setTimeMode,
+  setIsPomodoroActive,
 } = clockSlice.actions;
 
 export default clockSlice.reducer;
