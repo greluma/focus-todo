@@ -4,9 +4,7 @@ import { useSelector } from 'react-redux';
 
 const HomeFocusBtn = ({ focusTime, icon, text, func, continueOrFinish, colorIcon }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const clockState = useSelector((state) => state.clock)
-  const timeMode = clockState.timeMode;
-  const { minutes } = clockState.initialTime
+  const { timeMode, initialTime: { minutes } } = useSelector((state) => state.clock)
   const operation = timeMode === "temporizador" ? "decrement" : "increment";
 
 

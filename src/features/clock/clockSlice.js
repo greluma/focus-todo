@@ -17,7 +17,7 @@ const initialState = {
   intervalId: null,
   showBanner: false,
   continueOrFinish: false,
-  totalMinutesFocus: initialStateTimer.minutes,
+  totalMinutesFocus: 0,
   image: background,
   timeMode: "temporizador",
   isPomodoroActive: false,
@@ -36,6 +36,7 @@ export const clockSlice = createSlice({
       if (state.timeMode === "temporizador") {
         state.timeMode = "cronometro";
         state.countDownTime = { minutes: 0, seconds: 0 };
+        state.totalMinutesFocus = 0;
       } else {
         state.timeMode = "temporizador";
         state.countDownTime = state.initialTime;

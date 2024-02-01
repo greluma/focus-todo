@@ -4,9 +4,7 @@ import ClockTimeInfo from "./ClockTimeInfo";
 import { useSelector } from "react-redux";
 
 const Clock = () => {
-  const clockState = useSelector((state) => state.clock)
-  const time = clockState.countDownTime
-  const timeMode = clockState.timeMode;
+  const { countDownTime: time, timeMode } = useSelector((state) => state.clock)
 
   return (
     <div className=" sm:p-10 p-4 rounded-md flex justify-center flex-col gap-6 shadow-[5px_5px_50px_rgba(47,46,60,1)]">

@@ -8,15 +8,12 @@ export function handlerTime(state, action, operation) {
     case "increment":
       !state.focusTime && (state.initialTime[unit] += time);
       state.countDownTime[unit] += time;
-      state.totalMinutesFocus += time;
       break;
     case "decrement":
       !state.focusTime && minutes > 0 && (state.initialTime[unit] -= time);
       state.countDownTime[unit] -= time;
       minutes <= 0 && (state.countDownTime.minutes = 0);
-      if (time === 5 && minutes > 0) {
-        state.totalMinutesFocus -= time;
-      }
+
       break;
   }
 }
@@ -32,6 +29,7 @@ export function handleChangeMinute(state, operation) {
       state.countDownTime.minutes += 1;
       break;
   }
+  if (state.totalMinutesFocus) state.totalMinutesFocus++;
 }
 
 export function handleFinishPomodoro(state) {
@@ -42,7 +40,7 @@ export function handleFinishPomodoro(state) {
   state.isPomodoroActive = false;
   playAudio();
   callFinishToast(totalMinutes);
-  state.totalMinutesFocus = state.initialTime.minutes;
+  state.totalMinutesFocus = 0;
   handlerResetTimer(state);
 }
 
@@ -55,5 +53,7 @@ export const handlerResetTimer = (state) => {
       state.countDownTime = { minutes: 0, seconds: 0 };
       break;
   }
-  state.totalMinutesFocus = state.initialTime.minutes;
+  if (state.totalMinutesFocus.minutes !== state.initialTime.minutes) {
+    state.totalMinutesFocus = 0;
+  }
 };

@@ -20,15 +20,9 @@ import newImage from '../utils/newImage';
 import { callFinishToast } from '../utils/callToast';
 
 const Home = () => {
+    const { focusTime, showBanner, continueOrFinish, image, timeMode, isPomodoroActive, totalMinutesFocus } = useSelector((state) => state.clock)
+
     const isSmallScreen = useMediaQuery({ maxWidth: 640 }); // sm: 640px
-    const clockState = useSelector((state) => state.clock)
-    const focusTime = clockState.focusTime
-    const showBanner = clockState.showBanner
-    const continueOrFinish = clockState.continueOrFinish;
-    const image = clockState.image;
-    const timeMode = clockState.timeMode;
-    const { minutes } = clockState.countDownTime;
-    const isPomodoroActive = clockState.isPomodoroActive;
     const dispatch = useDispatch()
 
     function startFocus(operation) {
@@ -47,7 +41,6 @@ const Home = () => {
             }
         }, 1000)))
         dispatch(setIsPomodoroActive(true))
-        console.log(isPomodoroActive);
     }
 
     function pauseFocus() {
@@ -61,7 +54,7 @@ const Home = () => {
         dispatch(clearIntervalHandler())
         dispatch(setContinueOrFinish(false))
         dispatch(resetTimer())
-        callFinishToast(minutes)
+        callFinishToast(totalMinutesFocus)
         dispatch(setIsPomodoroActive(false))
     }
 
