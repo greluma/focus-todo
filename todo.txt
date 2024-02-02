@@ -1,4 +1,4 @@
 - Icono a la aplicación y el banner
 - Cambiar color de los iconos dependiendo del fondo
 - Manejar la carga de la imagen con el loader de browser route
-- que el main banner aparezca suave
+- efecto de calendario al cambio del main banner

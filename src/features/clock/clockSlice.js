@@ -22,6 +22,7 @@ const initialState = {
   timeMode: "temporizador",
   isPomodoroActive: false,
   isMainBannerActive: false,
+  isSoundListActive: false,
 };
 
 export const clockSlice = createSlice({
@@ -31,6 +32,10 @@ export const clockSlice = createSlice({
     clearIntervalHandler: (state) => {
       clearInterval(state.intervalId);
       state.intervalId = null;
+    },
+
+    setIsSoundListActive: (state) => {
+      state.isSoundListActive = !state.isSoundListActive;
     },
 
     setTimeMode: (state) => {
@@ -118,6 +123,7 @@ export const {
   setTimeMode,
   setIsPomodoroActive,
   setIsMainBannerActive,
+  setIsSoundListActive,
 } = clockSlice.actions;
 
 export default clockSlice.reducer;

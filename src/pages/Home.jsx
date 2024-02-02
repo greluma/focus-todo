@@ -11,16 +11,18 @@ import Clock from "../components/Clock"
 import BtnHome from "../components/BtnHome";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { handleShowBanner, changeImage, setTimeMode, setIsMainBannerActive } from "../features/clock/clockSlice";
+import { handleShowBanner, changeImage, setTimeMode, setIsMainBannerActive, setIsSoundListActive } from "../features/clock/clockSlice";
 import Banner from "../components/Banner";
 import newImage from '../utils/newImage';
 import ClockBanner from '../components/ClockBanner';
 import { handleStartFocus, handlePauseFocus, handleStopFocus } from '../features/clock/actionsHandlers';
 import HomeFocusBtnContainer from '../components/HomeFocusBtnContainer';
+import SoundListBanner from '../components/SoundListBanner';
 
 
 const Home = () => {
     const { focusTime, showBanner, continueOrFinish, image, timeMode, isPomodoroActive, totalMinutesFocus } = useSelector((state) => state.clock)
+
 
     const isSmallScreen = useMediaQuery({ maxWidth: 640 }); // sm: 640px
     const dispatch = useDispatch()
@@ -55,6 +57,10 @@ const Home = () => {
         dispatch(setIsMainBannerActive())
     }
 
+    function handleSoundListActive() {
+        dispatch(setIsSoundListActive())
+    }
+
     return (
         <>
             <div className={`grid gap-4 p-4 min-h-[100vh] bg-center bg-cover transition duration-300 ease-in-out ${showBanner ? 'opacity-90' : ''}`} style={{ backgroundImage: `url(${image})` }}>
@@ -73,12 +79,13 @@ const Home = () => {
                 <div className="flex self-end justify-center gap-5">
                     <BtnHome icon={<GoScreenFull />} text="pantalla completa" func={handleFullScreen} />
                     <BtnHome icon={timeMode === "temporizador" ? <TiStopwatch /> : <CgSandClock />} text={`modo ${timeMode === "temporizador" ? "cronometro" : "temporizador"}`} func={handleTimeMode} disable={isPomodoroActive} />
-                    <BtnHome icon={<ImMusic />} text="sonido de fondo" />
+                    <BtnHome icon={<ImMusic />} text="sonido de fondo" func={handleSoundListActive} />
                     <BtnHome icon={<GrImage />} text="Fondo de Pantalla" func={handleChangeImage} />
                 </div>
             </div >
             {showBanner && <Banner setShowBanner={setShowBanner} stopFocus={stopFocus} textoPrincipal='¿Terminar este pomodoro?' textoSecundario='¿Esta seguro de parar este temporizador?' />
             }
+            <SoundListBanner />
             <ClockBanner />
         </>
 
