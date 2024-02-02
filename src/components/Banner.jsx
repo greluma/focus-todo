@@ -3,7 +3,7 @@ import { IoMdClock } from "react-icons/io";
 
 const Banner = ({ setShowBanner, stopFocus, textoPrincipal, textoSecundario }) => {
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center animate-fadeIn">
+        <div className="fixed inset-0 z-20 flex items-center justify-center animate-fadeIn ">
             <div className="grid grid-cols-5 gap-4 p-4 text-center rounded shadow-lg bg-slate-200">
                 <div className="self-center col-span-1 text-6xl text-red-800 place-self-center"><IoMdClock /></div>
                 <div className='col-span-4'>

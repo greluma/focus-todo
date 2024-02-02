@@ -4,14 +4,14 @@ import { FaAngleDown } from "react-icons/fa6";
 import { CgSandClock } from "react-icons/cg";
 import { GrImage } from "react-icons/gr";
 import { ImMusic } from "react-icons/im";
-import { BsClockHistory } from "react-icons/bs";
+import { GoScreenFull } from "react-icons/go";
 import { TiStopwatch } from "react-icons/ti";
 // components
 import Clock from "../components/Clock"
 import BtnHome from "../components/BtnHome";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { handleShowBanner, changeImage, setTimeMode } from "../features/clock/clockSlice";
+import { handleShowBanner, changeImage, setTimeMode, setIsMainBannerActive } from "../features/clock/clockSlice";
 import Banner from "../components/Banner";
 import newImage from '../utils/newImage';
 import ClockBanner from '../components/ClockBanner';
@@ -51,6 +51,10 @@ const Home = () => {
         dispatch(setTimeMode())
     }
 
+    function handleFullScreen() {
+        dispatch(setIsMainBannerActive())
+    }
+
     return (
         <>
             <div className={`grid gap-4 p-4 min-h-[100vh] bg-center bg-cover transition duration-300 ease-in-out ${showBanner ? 'opacity-90' : ''}`} style={{ backgroundImage: `url(${image})` }}>
@@ -67,7 +71,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="flex self-end justify-center gap-5">
-                    <BtnHome icon={<BsClockHistory />} text="pantalla completa" />
+                    <BtnHome icon={<GoScreenFull />} text="pantalla completa" func={handleFullScreen} />
                     <BtnHome icon={timeMode === "temporizador" ? <TiStopwatch /> : <CgSandClock />} text={`modo ${timeMode === "temporizador" ? "cronometro" : "temporizador"}`} func={handleTimeMode} disable={isPomodoroActive} />
                     <BtnHome icon={<ImMusic />} text="sonido de fondo" />
                     <BtnHome icon={<GrImage />} text="Fondo de Pantalla" func={handleChangeImage} />
