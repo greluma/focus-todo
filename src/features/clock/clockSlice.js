@@ -21,6 +21,7 @@ const initialState = {
   image: background,
   timeMode: "temporizador",
   isPomodoroActive: false,
+  isMainBannerActive: false,
 };
 
 export const clockSlice = createSlice({
@@ -45,6 +46,9 @@ export const clockSlice = createSlice({
 
     setIsPomodoroActive: (state, action) => {
       state.isPomodoroActive = action.payload;
+    },
+    setIsMainBannerActive: (state) => {
+      state.isMainBannerActive = !state.isMainBannerActive;
     },
 
     setContinueOrFinish: (state, action) => {
@@ -113,6 +117,7 @@ export const {
   changeImage,
   setTimeMode,
   setIsPomodoroActive,
+  setIsMainBannerActive,
 } = clockSlice.actions;
 
 export default clockSlice.reducer;

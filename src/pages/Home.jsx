@@ -1,24 +1,23 @@
 import { useMediaQuery } from 'react-responsive';
 // icons
 import { FaAngleDown } from "react-icons/fa6";
-import { FaPlay, FaPause, FaStop } from "react-icons/fa";
 import { CgSandClock } from "react-icons/cg";
 import { GrImage } from "react-icons/gr";
 import { ImMusic } from "react-icons/im";
 import { BsClockHistory } from "react-icons/bs";
-import { CiPlay1 } from "react-icons/ci";
 import { TiStopwatch } from "react-icons/ti";
 // components
 import Clock from "../components/Clock"
 import BtnHome from "../components/BtnHome";
-import HomeFocusBtn from "../components/HomeFocusBtn";
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { changeFocusTime, decrement, resetTimer, newIntervalId, clearIntervalHandler, handleShowBanner, setContinueOrFinish, changeImage, increment, setTimeMode, setIsPomodoroActive } from "../features/clock/clockSlice";
+import { handleShowBanner, changeImage, setTimeMode } from "../features/clock/clockSlice";
 import Banner from "../components/Banner";
 import newImage from '../utils/newImage';
-import { callFinishToast } from '../utils/callToast';
 import ClockBanner from '../components/ClockBanner';
+import { handleStartFocus, handlePauseFocus, handleStopFocus } from '../features/clock/actionsHandlers';
+import HomeFocusBtnContainer from '../components/HomeFocusBtnContainer';
+
 
 const Home = () => {
     const { focusTime, showBanner, continueOrFinish, image, timeMode, isPomodoroActive, totalMinutesFocus } = useSelector((state) => state.clock)
@@ -26,37 +25,17 @@ const Home = () => {
     const isSmallScreen = useMediaQuery({ maxWidth: 640 }); // sm: 640px
     const dispatch = useDispatch()
 
+    // * handlers
     function startFocus(operation) {
-        dispatch(setContinueOrFinish(false))
-        dispatch(changeFocusTime(true));
-        dispatch(newIntervalId(setInterval(() => {
-            switch (operation) {
-                case "increment":
-                    dispatch(increment({ unit: "seconds", time: 1 }))
-                    break;
-                case "decrement":
-                    dispatch(decrement({ unit: "seconds", time: 1 }))
-                    break;
-                default:
-                    break;
-            }
-        }, 1000)))
-        dispatch(setIsPomodoroActive(true))
+        handleStartFocus(dispatch, operation)
     }
 
     function pauseFocus() {
-        dispatch(changeFocusTime(false));
-        dispatch(clearIntervalHandler())
-        dispatch(setContinueOrFinish(true))
+        handlePauseFocus(dispatch)
     }
 
     function stopFocus() {
-        dispatch(changeFocusTime(false));
-        dispatch(clearIntervalHandler())
-        dispatch(setContinueOrFinish(false))
-        dispatch(resetTimer())
-        callFinishToast(totalMinutesFocus)
-        dispatch(setIsPomodoroActive(false))
+        handleStopFocus(dispatch, totalMinutesFocus)
     }
 
     function setShowBanner() {
@@ -84,9 +63,7 @@ const Home = () => {
                         <Clock />
                     </div>
                     <div className="m-auto ">
-                        <HomeFocusBtn focusTime={focusTime} continueOrFinish={continueOrFinish} icon={<FaPlay />} text="Comenzar a Enfocarse" func={startFocus} colorIcon={"limeGreen"} />
-                        <HomeFocusBtn focusTime={!focusTime} icon={<FaPause />} text="Pausa" func={pauseFocus} colorIcon={"indianRed"} />
-                        {continueOrFinish && <div className="flex gap-4"><HomeFocusBtn focusTime={focusTime} icon={<CiPlay1 />} text="Continuar" colorIcon={"limeGreen"} func={startFocus} /><HomeFocusBtn focusTime={focusTime} icon={<FaStop />} text="Terminar" func={setShowBanner} colorIcon={"indianRed"} /></div>}
+                        <HomeFocusBtnContainer focusTime={focusTime} continueOrFinish={continueOrFinish} startFocus={startFocus} pauseFocus={pauseFocus} setShowBanner={setShowBanner} text={["Comenzar a Enfocarse", "Pausa", "Continuar", "Terminar"]} />
                     </div>
                 </div>
                 <div className="flex self-end justify-center gap-5">

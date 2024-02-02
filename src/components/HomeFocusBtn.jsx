@@ -6,8 +6,6 @@ const HomeFocusBtn = ({ focusTime, icon, text, func, continueOrFinish, colorIcon
   const [isHovered, setIsHovered] = useState(false);
   const { timeMode, initialTime: { minutes } } = useSelector((state) => state.clock)
   const operation = timeMode === "temporizador" ? "decrement" : "increment";
-
-
   return (
     <button
       onMouseEnter={() => setIsHovered(true)}
@@ -18,14 +16,14 @@ const HomeFocusBtn = ({ focusTime, icon, text, func, continueOrFinish, colorIcon
       `}
       disabled={minutes === 0}
     >
-      {minutes === 0 ? "Añadir Tiempo" : <><div className="mr-2 transition duration-100" style={{ color: isHovered ? `${colorIcon}` : '' }}>{icon}</div>{text}</>}
+      {minutes === 0 ? "Añadir Tiempo" : <><div className={`${!text ? "" : "mr-2"} transition duration-100`} style={{ color: isHovered ? `${colorIcon}` : '' }}>{icon}</div>{text}</>}
     </button>
   )
 }
 
 HomeFocusBtn.propTypes = {
   focusTime: PropTypes.bool,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   icon: PropTypes.element.isRequired,
   func: PropTypes.func,
   continueOrFinish: PropTypes.bool,
