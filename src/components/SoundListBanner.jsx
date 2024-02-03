@@ -15,14 +15,14 @@ const SoundListBanner = () => {
                     <form className="grid gap-4">
                         <div className="flex justify-around gap-4 mx-auto w-fit" >
                             <label htmlFor="volumen" className="text-sm tracking-wide md:text-base" >Volumen</label>
-                            <input type="range" id="volumen" name="volumen" value="100" />
+                            <input type="range" id="volumen" name="volumen" defaultValue="100" />
                         </div>
-                        <ul className="grid justify-around gap-3">
+                        <ul className="grid justify-around gap-3 list-element">
                             {soundList.map((sound) => {
                                 return (
-                                    <li key={sound.id} className="flex justify-between gap-7">
+                                    <li key={sound.id} className="flex justify-between gap-7 list-element">
                                         <label htmlFor={sound.id} className="text-xs tracking-wide md:text-base">{sound.name}</label>
-                                        <input className="text-end" type="radio" id={sound.id} name="sound" value={sound.id} />
+                                        <input className="text-end" type="radio" id={sound.id} name="sound" value={sound.id} defaultChecked={sound.id == "0"} />
                                     </li>
                                 )
                             })}

@@ -23,6 +23,7 @@ const initialState = {
   isPomodoroActive: false,
   isMainBannerActive: false,
   isSoundListActive: false,
+  theSound: null,
 };
 
 export const clockSlice = createSlice({
@@ -36,6 +37,10 @@ export const clockSlice = createSlice({
 
     setIsSoundListActive: (state) => {
       state.isSoundListActive = !state.isSoundListActive;
+    },
+
+    setTheSound: (state, action) => {
+      state.theSound = action.payload;
     },
 
     setTimeMode: (state) => {
@@ -124,6 +129,7 @@ export const {
   setIsPomodoroActive,
   setIsMainBannerActive,
   setIsSoundListActive,
+  setTheSound,
 } = clockSlice.actions;
 
 export default clockSlice.reducer;

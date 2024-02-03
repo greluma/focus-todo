@@ -1,8 +1,12 @@
-import soundTicking from "../../public/clock-ticking.mp3";
+import soundTicking from "../assets/sounds/clock-ticking.mp3";
 
 export function createAudioElement(src) {
   const audio = new Audio(src);
   return audio;
+}
+
+export function searchSound(soundId) {
+  return soundList.find((sound) => sound.id === soundId);
 }
 
 export const soundList = [
