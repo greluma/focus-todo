@@ -1,9 +1,38 @@
 import { useSelector } from "react-redux"
-import { soundList } from "../utils/sounds"
+import { searchSound, soundList } from "../utils/sounds"
 import SoundBannerBtn from "./SoundBannerBtn"
+import { setIsSoundListActive, setTheSound } from "../features/clock/clockSlice"
 
 
-// const classBtn = "p-2 text-xs font-bold transition duration-500 ease-in-out border rounded text-slate-400 border-slate-400 hover:text-slate-100 hover:border-slate-100  uppercase tracking-widest"
+function btnDefaultAction(e, dispatch) {
+    e.preventDefault()
+    dispatch(setIsSoundListActive())
+
+}
+function btnSalir(e, dispatch, theSound) {
+    btnDefaultAction(e, dispatch)
+    const srcSelectedAudio = soundList.find((sound) => sound.sound == theSound);
+    const list = Array.from(document.querySelectorAll('.list-element'))
+    list.forEach((element) => {
+        if (list.indexOf(element) === srcSelectedAudio.id) {
+            element.querySelector('input').checked = true
+        }
+    })
+
+}
+
+function btnDefinir(e, dispatch) {
+    btnDefaultAction(e, dispatch)
+    const list = document.querySelectorAll('.list-element')
+    list.forEach((element) => {
+        const input = element.querySelector('input')
+        if (input.checked) {
+            const sound = searchSound(+input.value).sound
+            dispatch(setTheSound(sound))
+        }
+    })
+}
+
 const SoundListBanner = () => {
     const { isSoundListActive } = useSelector((state) => state.clock)
 
@@ -17,7 +46,7 @@ const SoundListBanner = () => {
                             <label htmlFor="volumen" className="text-sm tracking-wide md:text-base" >Volumen</label>
                             <input type="range" id="volumen" name="volumen" defaultValue="100" />
                         </div>
-                        <ul className="grid justify-around gap-3 list-element">
+                        <ul className="grid justify-around gap-3">
                             {soundList.map((sound) => {
                                 return (
                                     <li key={sound.id} className="flex justify-between gap-7 list-element">
@@ -29,8 +58,8 @@ const SoundListBanner = () => {
                         </ul>
                         <div className="h-0.5 -mx-4  md:-mx-6 bg-slate-700"></div>
                         <div className="flex justify-center gap-3">
-                            <SoundBannerBtn text="Determinar" />
-                            <SoundBannerBtn text="Salir" />
+                            <SoundBannerBtn text="Determinar" func={btnDefinir} />
+                            <SoundBannerBtn text="Salir" func={btnSalir} />
                         </div>
                     </form>
                 </div>
