@@ -18,11 +18,19 @@ import ClockBanner from '../components/ClockBanner';
 import { handleStartFocus, handlePauseFocus, handleStopFocus } from '../features/clock/actionsHandlers';
 import HomeFocusBtnContainer from '../components/HomeFocusBtnContainer';
 import SoundListBanner from '../components/SoundListBanner';
-
+import { createAudioElement } from '../utils/sounds';
+import { useEffect, useRef } from 'react';
 
 const Home = () => {
-    const { focusTime, showBanner, continueOrFinish, image, timeMode, isPomodoroActive, totalMinutesFocus, isSoundListActive } = useSelector((state) => state.clock)
+    const { focusTime, showBanner, continueOrFinish, image, timeMode, isPomodoroActive, totalMinutesFocus, isSoundListActive, theSound } = useSelector((state) => state.clock)
 
+    // TODO: refactorizar el audio
+    const audio = useRef(createAudioElement(theSound))
+    useEffect(() => {
+        if (audio.current) {
+            audio.current.src = theSound;
+        }
+    }, [theSound]);
 
     const isSmallScreen = useMediaQuery({ maxWidth: 640 }); // sm: 640px
     const dispatch = useDispatch()
@@ -30,14 +38,24 @@ const Home = () => {
     // * handlers
     function startFocus(operation) {
         handleStartFocus(dispatch, operation)
+        if (audio.current) {
+            audio.current.play();
+        }
     }
 
     function pauseFocus() {
         handlePauseFocus(dispatch)
+        if (audio.current) {
+            audio.current.pause();
+        }
+
     }
 
     function stopFocus() {
         handleStopFocus(dispatch, totalMinutesFocus)
+        if (audio.current) {
+            audio.current.pause();
+        }
     }
 
     function setShowBanner() {

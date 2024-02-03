@@ -3,5 +3,4 @@
 - Manejar la carga de la imagen con el loader de browser route
 - efecto de calendario al cambio del main banner
 
-- marcar checked el ninguno cuando de salir
-- reproducir el audio al iniciar pomodoro
+- la funcion reproducir el audio esta en Home y no funcion para el banenr
