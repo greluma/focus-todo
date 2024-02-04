@@ -22,15 +22,19 @@ import { createAudioElement } from '../utils/sounds';
 import { useEffect, useRef } from 'react';
 
 const Home = () => {
-    const { focusTime, showBanner, continueOrFinish, image, timeMode, isPomodoroActive, totalMinutesFocus, isSoundListActive, theSound } = useSelector((state) => state.clock)
+    const { focusTime, showBanner, continueOrFinish, image, timeMode, isPomodoroActive, totalMinutesFocus, isSoundListActive, theSound, intervalId } = useSelector((state) => state.clock)
 
-    // TODO: refactorizar el audio
+    // * Crear y  Reproducir Audio
     const audio = useRef(createAudioElement(theSound))
+    audio.current.loop = true;
     useEffect(() => {
-        if (audio.current) {
-            audio.current.src = theSound;
-        }
+        audio.current.src = theSound;
     }, [theSound]);
+
+    audio.current.src &&
+        theSound && intervalId && audio.current.play();
+    theSound && !intervalId && audio.current.pause();
+
 
     const isSmallScreen = useMediaQuery({ maxWidth: 640 }); // sm: 640px
     const dispatch = useDispatch()
@@ -38,24 +42,14 @@ const Home = () => {
     // * handlers
     function startFocus(operation) {
         handleStartFocus(dispatch, operation)
-        if (audio.current) {
-            audio.current.play();
-        }
     }
 
     function pauseFocus() {
         handlePauseFocus(dispatch)
-        if (audio.current) {
-            audio.current.pause();
-        }
-
     }
 
     function stopFocus() {
         handleStopFocus(dispatch, totalMinutesFocus)
-        if (audio.current) {
-            audio.current.pause();
-        }
     }
 
     function setShowBanner() {
