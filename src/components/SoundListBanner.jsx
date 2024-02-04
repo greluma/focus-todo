@@ -4,13 +4,13 @@ import SoundBannerBtn from "./SoundBannerBtn"
 import { setIsSoundListActive, setTheSound } from "../features/clock/clockSlice"
 
 
-function btnDefaultAction(e, dispatch) {
+function defaultAction(e, dispatch) {
     e.preventDefault()
     dispatch(setIsSoundListActive())
 
 }
 function btnSalir(e, dispatch, theSound) {
-    btnDefaultAction(e, dispatch)
+    defaultAction(e, dispatch)
     const srcSelectedAudio = soundList.find((sound) => sound.sound == theSound);
     const list = Array.from(document.querySelectorAll('.list-element'))
     list.forEach((element) => {
@@ -22,7 +22,7 @@ function btnSalir(e, dispatch, theSound) {
 }
 
 function btnDefinir(e, dispatch) {
-    btnDefaultAction(e, dispatch)
+    defaultAction(e, dispatch)
     const list = document.querySelectorAll('.list-element')
     list.forEach((element) => {
         const input = element.querySelector('input')
@@ -42,16 +42,17 @@ const SoundListBanner = () => {
                 <div className='grid gap-4 p-4 md:p-6'>
                     <h2 className="text-lg tracking-wide text-center rounded md:text-2xl">Sonido de Fondo</h2>
                     <form className="grid gap-4">
-                        <div className="flex justify-around gap-4 mx-auto w-fit" >
-                            <label htmlFor="volumen" className="text-sm tracking-wide md:text-base" >Volumen</label>
-                            <input type="range" id="volumen" name="volumen" defaultValue="100" />
+                        <div className="flex p-1 mx-auto border rounded border-slate-700 w-fit" >
+                            <label htmlFor="volumen" className="p-1 text-sm tracking-wide md:text-base" >Volumen</label>
+                            {/* <input type="range" id="volumen" name="volumen" min="0" max="100" defaultValue="100" className="w-1/2" /> */}
+                            <input type="range" id="volumen" min="0" max="100" defaultValue="50" className="PB-range-slider "></input>
                         </div>
-                        <ul className="grid justify-around gap-3">
+                        <ul className="grid justify-around gap-5">
                             {soundList.map((sound) => {
                                 return (
                                     <li key={sound.id} className="flex justify-between gap-7 list-element">
                                         <label htmlFor={sound.id} className="text-xs tracking-wide md:text-base">{sound.name}</label>
-                                        <input className="text-end" type="radio" id={sound.id} name="sound" value={sound.id} defaultChecked={sound.id == "0"} />
+                                        <input className="input" type="radio" id={sound.id} name="sound" value={sound.id} defaultChecked={sound.id == "0"} />
                                     </li>
                                 )
                             })}

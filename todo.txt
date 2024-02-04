@@ -2,9 +2,10 @@ Estilos:
 - Icono a la aplicación y el banner
 - Cambiar color de los iconos dependiendo del fondo
 - efecto de calendario al cambio del main banner
--colores a los input radio y range
+- colores a los input radio y range
 
 Funcionalidades:
 - Inicio de sesion
 - Manejar la carga de la imagen con el loader de browser route
 - funcionalidad de volumen audio
+- Implementar route y reactQuery

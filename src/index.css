@@ -2,8 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
+/* input radio */
 .btnSoundBanner {
-  /* p-2 text-xs font-bold transition duration-500 ease-in-out border rounded text-slate-400 border-slate-400 hover:text-slate-100 hover:border-slate-100  uppercase tracking-widest */
   @apply p-2 text-xs font-bold tracking-widest uppercase transition duration-500 ease-in-out border rounded text-slate-400 border-slate-400;
   @apply hover:text-slate-100 hover:border-slate-100;
+}
+
+.PB-range-slider {
+  -webkit-appearance: none;
+  width: 50%;
+  height: 4px;
+  border-radius: 5px;
+  background: #d5dbe1;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  margin: auto;
+}
+
+.PB-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: aqua;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.PB-range-slider::-webkit-slider-thumb:hover {
+  box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.16);
+  transition: 0.3s ease-in-out;
+}
+
+.PB-range-slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #000000;
+  cursor: pointer;
+}
+
+.PB-range-slider-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #c6cace;
+  box-shadow: 0px 1px 2px 0px #1f1e241f;
+}
+
+.PB-range-slidervalue {
+  font-weight: 600;
+}
+
+/* input range*/
+.input {
+  appearance: none;
+  -webkit-appearance: none;
+  /* remove default */
+  width: 20px;
+  height: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: hsla(0, 0%, 100%, 0.15) 0 1px 1px,
+    inset hsla(0, 0%, 0%, 0.5) 0 0 0 1px;
+  background-color: hsla(0, 3%, 29%, 0.2);
+  background-image: -webkit-radial-gradient(
+    hsla(200, 100%, 90%, 1) 0%,
+    hsla(200, 100%, 70%, 1) 15%,
+    hsla(200, 100%, 60%, 0.3) 28%,
+    hsla(200, 100%, 30%, 0) 70%
+  );
+  background-repeat: no-repeat;
+  -webkit-transition: background-position 0.15s cubic-bezier(0.8, 0, 1, 1),
+    -webkit-transform 0.25s cubic-bezier(0.8, 0, 1, 1);
+  outline: none;
+}
+
+.input:checked {
+  -webkit-transition: background-position 0.2s 0.15s cubic-bezier(0, 0, 0.2, 1),
+    -webkit-transform 0.25s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.input:active {
+  -webkit-transform: scale(1.5);
+  -webkit-transition: -webkit-transform 0.1s cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* The up/down direction logic */
+
+.input,
+.input:active {
+  background-position: 0 24px;
+}
+
+.input:checked {
+  background-position: 0 0;
+}
+
+.input:checked ~ .input,
+.input:checked ~ .input:active {
+  background-position: 0 -24px;
 }
