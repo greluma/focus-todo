@@ -7,6 +7,7 @@ import {
   setContinueOrFinish,
   increment,
   setIsPomodoroActive,
+  setIsMainBannerActive,
 } from "./clockSlice";
 
 import { callFinishToast } from "../../utils/callToast";
@@ -39,11 +40,16 @@ export const handlePauseFocus = (dispatch) => {
   dispatch(setContinueOrFinish(true));
 };
 
-export const handleStopFocus = (dispatch, totalMinutesFocus) => {
+export const handleStopFocus = (
+  dispatch,
+  totalMinutesFocus,
+  isMainBannerActive
+) => {
   dispatch(changeFocusTime(false));
   dispatch(clearIntervalHandler());
   dispatch(setContinueOrFinish(false));
   dispatch(resetTimer());
   callFinishToast(totalMinutesFocus);
   dispatch(setIsPomodoroActive(false));
+  isMainBannerActive && dispatch(setIsMainBannerActive());
 };

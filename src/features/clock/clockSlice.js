@@ -24,6 +24,7 @@ const initialState = {
   isMainBannerActive: false,
   isSoundListActive: false,
   theSound: null,
+  volumen: 50,
 };
 
 export const clockSlice = createSlice({
@@ -33,6 +34,10 @@ export const clockSlice = createSlice({
     clearIntervalHandler: (state) => {
       clearInterval(state.intervalId);
       state.intervalId = null;
+    },
+
+    setVolumen: (state, action) => {
+      state.volumen = action.payload;
     },
 
     setIsSoundListActive: (state) => {
@@ -130,6 +135,7 @@ export const {
   setIsMainBannerActive,
   setIsSoundListActive,
   setTheSound,
+  setVolumen,
 } = clockSlice.actions;
 
 export default clockSlice.reducer;

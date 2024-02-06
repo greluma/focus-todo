@@ -1,9 +1,9 @@
+Funcionalidades:
+- Implementar route y reactQuery
+- Inicio de sesion
+- Manejar la carga de la imagen con el loader de browser route
+
+
 Estilos: 
 - Cambiar color de los iconos dependiendo del fondo
 - efecto de calendario al cambio del main banner
-
-Funcionalidades:
-- Inicio de sesion
-- Manejar la carga de la imagen con el loader de browser route
-- funcionalidad de volumen audio
-- Implementar route y reactQuery

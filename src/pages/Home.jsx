@@ -22,11 +22,13 @@ import { createAudioElement } from '../utils/sounds';
 import { useEffect, useRef } from 'react';
 
 const Home = () => {
-    const { focusTime, showBanner, continueOrFinish, image, timeMode, isPomodoroActive, totalMinutesFocus, isSoundListActive, theSound, intervalId } = useSelector((state) => state.clock)
+    const { focusTime, showBanner, continueOrFinish, image, timeMode, isPomodoroActive, totalMinutesFocus, isSoundListActive, theSound, intervalId, volumen, isMainBannerActive } = useSelector((state) => state.clock)
+
 
     // * Crear y  Reproducir Audio
     const audio = useRef(createAudioElement(theSound))
     audio.current.loop = true;
+    audio.current.volume = volumen / 100;
     useEffect(() => {
         audio.current.src = theSound;
     }, [theSound]);
@@ -49,7 +51,7 @@ const Home = () => {
     }
 
     function stopFocus() {
-        handleStopFocus(dispatch, totalMinutesFocus)
+        handleStopFocus(dispatch, totalMinutesFocus, isMainBannerActive)
     }
 
     function setShowBanner() {
