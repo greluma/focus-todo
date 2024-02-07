@@ -36,7 +36,7 @@ function btnDefinir(e, dispatch) {
 
 
 const SoundListBanner = () => {
-    const { volumen } = useSelector((state) => state.clock)
+    const { volumen, isSoundListActive } = useSelector((state) => state.clock)
     const dispatch = useDispatch()
 
     function handleVolumen(e) {
@@ -49,6 +49,10 @@ const SoundListBanner = () => {
         audio.current.volume = volumen / 100
     }
 
+    if (audio.current && !isSoundListActive) {
+        audio.current.pause()
+    }
+
     function handleList(e) {
         audio?.current?.pause()
         const sound = searchSound(+e.currentTarget.querySelector('input').id).sound
@@ -59,7 +63,6 @@ const SoundListBanner = () => {
         }, 5000);
     }
 
-    const { isSoundListActive } = useSelector((state) => state.clock)
     return (
         <div className={`fixed ${!isSoundListActive && "hidden"} inset-0 z-10 animate-fadeIn w-screen h-screen text-slate-200`}>
             <div className="fixed transform -translate-x-1/2 -translate-y-1/2 bg-slate-950 left-1/2 top-1/2 rounded-xl">

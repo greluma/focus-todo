@@ -20,6 +20,7 @@ import HomeFocusBtnContainer from '../components/HomeFocusBtnContainer';
 import SoundListBanner from '../components/SoundListBanner';
 import { createAudioElement } from '../utils/sounds';
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const { focusTime, showBanner, continueOrFinish, image, timeMode, isPomodoroActive, totalMinutesFocus, isSoundListActive, theSound, intervalId, volumen, isMainBannerActive } = useSelector((state) => state.clock)
@@ -79,7 +80,7 @@ const Home = () => {
         <>
             <div className={`grid gap-4 p-4 min-h-[100vh] bg-center bg-cover transition duration-300 ease-in-out ${showBanner || isSoundListActive ? 'opacity-90' : ''}`} style={{ backgroundImage: `url(${image})` }}>
                 <div className="grid grid-cols-3 m-auto justify-items-start">
-                    <button className="text-3xl md:text-4xl text-slate-200 animate-bounce hover:animate-none"><FaAngleDown /></button>
+                    <Link to={"dashboard"} className="text-3xl md:text-4xl text-slate-200 animate-bounce hover:animate-none"><FaAngleDown /></Link>
                     <button className="py-2 text-sm font-bold tracking-wider transition duration-500 ease-in-out rounded-full md:text-base bg-slate-700 text-slate-300 px-7 justify-self-center hover:bg-slate-300 hover:text-slate-700">{isSmallScreen ? 'Tarea...' : 'Seleccione una tarea...'}</button>
                 </div>
                 <div className="h-[50vh] self-center grid justify-center content-center gap-5">

@@ -13,6 +13,10 @@ export default {
           "100%": { opacity: 1, scale: 1 },
         },
       },
+      boxShadow: {
+        bottom: "0 4px 2px -2px rgba(0, 0, 0, 0.1)",
+        right: "4px 0 2px -2px rgba(0, 0, 0, 0.1)",
+      },
     },
   },
   plugins: [],
