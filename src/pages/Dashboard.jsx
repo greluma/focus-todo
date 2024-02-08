@@ -4,13 +4,13 @@ import Sidebar from "../components/Dashboard/Sidebar";
 
 export default function Dashboard() {
     return (
-        <div className="grid h-screen">
-            <div className="h-[5vh]">
-                <Navbar />
-            </div>
-            <div className="flex h-[95vh]">
+        <div style={{ height: "100%", display: 'grid', gridTemplateRows: '1fr 13fr' }} >
+            <Navbar />
+            <div className="flex">
                 <Sidebar />
-                <Outlet />
+                <div className="w-full">
+                    <Outlet />
+                </div>
             </div>
         </div>
     )

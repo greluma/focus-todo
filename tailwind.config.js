@@ -7,6 +7,15 @@ export default {
       animation: {
         fadeIn: "fadeIn 0.3s ease-in-out",
       },
+      transitionProperty: {
+        myTransition: "all",
+      },
+      transitionTimingFunction: {
+        myTransition: "linear",
+      },
+      transitionDuration: {
+        myTransition: "300ms",
+      },
       keyframes: {
         fadeIn: {
           "0%": { opacity: 0, scale: 0 },
@@ -14,6 +23,7 @@ export default {
         },
       },
       boxShadow: {
+        top: "0 -4px 2px -2px rgba(0, 0, 0, 0.1)",
         bottom: "0 4px 2px -2px rgba(0, 0, 0, 0.1)",
         right: "4px 0 2px -2px rgba(0, 0, 0, 0.1)",
       },

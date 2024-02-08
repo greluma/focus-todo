@@ -109,3 +109,8 @@
 .input:checked ~ .input:active {
   background-position: 0 -24px;
 }
+
+html,
+body {
+  height: 100%;
+}
