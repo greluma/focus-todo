@@ -23,7 +23,7 @@ const mainLinks = [
 
 export default function LinksContainer() {
     return (
-        <ul className="grid self-start gap-2">
+        <ul className="grid self-start gap-2 pb-1 shadow-bottom">
             {mainLinks.map((link, index) => {
                 const { to, icon, text } = link;
                 return (
