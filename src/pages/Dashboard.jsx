@@ -9,7 +9,10 @@ export default function Dashboard() {
             <div className="flex">
                 <Sidebar />
                 <div className="w-full">
-                    <Outlet />
+                    <div className="h-full px-4 py-2 bg-slate-50">
+                        <Outlet />
+
+                    </div>
                 </div>
             </div>
         </div>

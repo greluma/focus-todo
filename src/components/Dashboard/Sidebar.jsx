@@ -1,4 +1,4 @@
-import { Form } from "react-router-dom"
+import { Form, Link } from "react-router-dom"
 import { FiSearch } from "react-icons/fi";
 import { BsFolderPlus } from "react-icons/bs";
 import LinksContainer from "./LinksContainer";
@@ -14,9 +14,9 @@ export default function Sidebar() {
                 <LinksContainer />
             </nav>
             <div className="flex justify-center shadow-top" >
-                <button className="flex self-center gap-2 p-1 text-sm tracking-wide text-red-500 capitalize transition-myTransition hover:text-red-600" onClick={() => {
+                <Link to={"/dashboard/proyectos"} className="flex self-center gap-2 p-1 text-sm tracking-wide text-red-500 capitalize transition-myTransition hover:text-red-600" onClick={() => {
                     console.log("Nuevo Proyecto");
-                }}> <span className="self-center"><BsFolderPlus /></span>nuevo proyecto</button>
+                }}> <span className="self-center"><BsFolderPlus /></span>nuevo proyecto</Link>
             </div>
         </aside>
     )

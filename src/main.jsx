@@ -6,6 +6,10 @@ import { store } from './app/store.js'
 import { Provider } from 'react-redux'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from './pages/Dashboard.jsx'
+import { Tareas } from './components/Dashboard/Tareas.jsx'
+import Completadas from './components/Dashboard/Completadas.jsx'
+import { PorHacer } from './components/Dashboard/PorHacer.jsx'
+import NewProject from './components/Dashboard/NewProject.jsx'
 
 const router = createBrowserRouter([
   {
@@ -18,15 +22,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard/tareas",
-        element: <h1 className='m-4'>Tareas</h1>,
+        element: <Tareas />,
       },
       {
         path: "/dashboard/completadas",
-        element: <h1 className='m-4'>Completadas</h1>,
+        element: <Completadas />,
       },
       {
         path: "/dashboard/todo",
-        element: <h1 className='m-4'>Por hacer</h1>,
+        element: <PorHacer />,
+      },
+      {
+        path: "/dashboard/proyectos",
+        element: <NewProject />,
       },
     ],
   },
