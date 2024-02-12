@@ -1,9 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { testData } from "../../data/records";
 
+const initialState = {
+  // TODO: el data inicialmente debe ser el localStorage o []
+  data: testData,
+};
+
 export const dashboardSlice = createSlice({
   name: "dashboard",
-  initialState: { data: testData },
+  initialState,
   reducers: {
     reducerTest: (state, action) => {
       console.log(state.data);

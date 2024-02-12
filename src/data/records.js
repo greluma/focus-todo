@@ -19,7 +19,7 @@ export const testData = [
         taskName: "Proyecto 1 Tarea 2",
         taskDescription: "Descripcion de la tarea 2",
         complete: true,
-        taskTime: 20,
+        taskTime: 10,
       },
     ],
   },
