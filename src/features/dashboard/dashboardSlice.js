@@ -10,13 +10,17 @@ export const dashboardSlice = createSlice({
   name: "dashboard",
   initialState,
   reducers: {
-    reducerTest: (state, action) => {
-      console.log(state.data);
-      console.log("reducerTest", action.payload);
+    addTask: (state, action) => {
+      const { newTask, project } = action.payload;
+      state.data.forEach((item) => {
+        if (item.projectName === project) {
+          item.tasks.push(newTask);
+        }
+      });
     },
   },
 });
 
-export const { reducerTest } = dashboardSlice.actions;
+export const { addTask } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
-const SingleTask = ({ taskName, taskDescription, complete, numeration }) => {
+const SingleTask = ({ id, taskName, taskDescription, complete, numeration }) => {
+    console.log(id);
     return (
         <div className={`flex gap-1 px-2 py-1 tracking-wide border rounded-md ${complete ? "bg-slate-500 border-slate-800 text-slate-300" : "bg-slate-200 border-slate-300"} `}>
             <span className='self-center text-xs font-bold'>{numeration}</span>
@@ -11,6 +12,7 @@ const SingleTask = ({ taskName, taskDescription, complete, numeration }) => {
 }
 
 SingleTask.propTypes = {
+    id: PropTypes.string.isRequired,
     taskName: PropTypes.string.isRequired,
     taskDescription: PropTypes.string.isRequired,
     complete: PropTypes.bool.isRequired,

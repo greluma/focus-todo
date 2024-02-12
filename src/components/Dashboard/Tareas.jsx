@@ -17,6 +17,9 @@ export const Tareas = () => {
     });
     const tareasProps = { list: allTasks, title: "Tareas", formExist: true, infoTasksTitles: ["Total de Tareas", "Tiempo Transcurrido (mins)"] }
     return (
+
         <TareasContainer {...tareasProps} />
+
+
     )
 }

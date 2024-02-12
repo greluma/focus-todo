@@ -5,7 +5,7 @@ import { TareasContainer } from "./TareasContainer";
 const PorHacer = () => {
     const { data } = useSelector((state) => state.dashboard)
     const allTasks = getAllTasks(data)
-    const incompletas = allTasks.filter((task) => task.complete)
+    const incompletas = allTasks.filter((task) => !task.complete)
     const tareasProps = { list: incompletas, title: "Por Hacer", formExist: false, infoTasksTitles: ["Total", "Tiempo Transcurrido (mins)"] }
     return (
         <TareasContainer {...tareasProps} />

@@ -2,6 +2,13 @@ import { v4 as uniqueId } from "uuid";
 
 export const testData = [
   {
+    projectName: "Sin Proyecto",
+    id: uniqueId(),
+    color: "blue-500",
+    projectTime: 0,
+    tasks: [],
+  },
+  {
     projectName: "Proyecto 1",
     id: uniqueId(),
     color: "red-500",

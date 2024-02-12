@@ -6,7 +6,7 @@ const ItemsListContainer = ({ list }) => {
         {list.map((task, index) => {
             const numeration = index + 1;
             const { id, taskName, taskDescription, complete } = task;
-            const taskProps = { taskName, taskDescription, complete, numeration };
+            const taskProps = { id, taskName, taskDescription, complete, numeration };
             return <li key={id}>
                 <SingleTask {...taskProps} />
             </li>

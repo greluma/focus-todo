@@ -14,30 +14,36 @@ import NewProject from './components/Dashboard/NewProject.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-  },
-  {
-    path: "/dashboard",
-    element: <Dashboard />,
     children: [
       {
-        path: "/dashboard/tareas",
-        element: <Tareas />,
+        index: true,
+        element: <App />,
       },
       {
-        path: "/dashboard/completadas",
-        element: <Completadas />,
+        path: "/dashboard",
+        element: <Dashboard />,
+        children: [
+          {
+            path: "/dashboard/tareas",
+            element: <Tareas />,
+          },
+          {
+            path: "/dashboard/completadas",
+            element: <Completadas />,
+          },
+          {
+            path: "/dashboard/todo",
+            element: <PorHacer />,
+          },
+          {
+            path: "/dashboard/proyectos",
+            element: <NewProject />,
+          },
+        ],
       },
-      {
-        path: "/dashboard/todo",
-        element: <PorHacer />,
-      },
-      {
-        path: "/dashboard/proyectos",
-        element: <NewProject />,
-      },
-    ],
-  },
+    ]
+  }
+
 ]);
 
 
