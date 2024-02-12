@@ -8,7 +8,6 @@ export const dashboardSlice = createSlice({
     reducerTest: (state, action) => {
       console.log(state.data);
       console.log("reducerTest", action.payload);
-      return;
     },
   },
 });
