@@ -1,7 +1,8 @@
 Funcionalidades:
-- Implementar route y reactQuery
+- Implementar reactQuery
 - Inicio de sesion
 - Manejar la carga de la imagen con el loader de browser route
+- Que no se reproduzcan los sonidos de la lista si hay un sonido con el pomodoro
 
 
 Estilos: 
