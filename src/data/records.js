@@ -21,6 +21,13 @@ export const testData = [
         complete: true,
         taskTime: 10,
       },
+      {
+        id: uniqueId(),
+        taskName: "Test",
+        taskDescription: "Test",
+        complete: true,
+        taskTime: 40,
+      },
     ],
   },
   {

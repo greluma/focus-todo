@@ -8,7 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from './pages/Dashboard.jsx'
 import { Tareas } from './components/Dashboard/Tareas.jsx'
 import Completadas from './components/Dashboard/Completadas.jsx'
-import { PorHacer } from './components/Dashboard/PorHacer.jsx'
+import PorHacer from './components/Dashboard/PorHacer.jsx'
 import NewProject from './components/Dashboard/NewProject.jsx'
 
 const router = createBrowserRouter([

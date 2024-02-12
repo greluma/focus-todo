@@ -1,9 +1,8 @@
-import { FaCircleUser } from "react-icons/fa6";
+import { FaCircleUser, FaAngleDown } from "react-icons/fa6";
 import { ImStatsBars } from "react-icons/im";
 import { CgInfo } from "react-icons/cg";
 import { IoNotifications } from "react-icons/io5";
 import NavIcon from "./NavIcon";
-import { FaAngleDown } from "react-icons/fa6";
 import AngleIcon from "../AngleIcon";
 
 
@@ -12,8 +11,8 @@ export default function Navbar() {
         <header className="relative z-20 h-full shadow-bottom bg-slate-100">
             <div className="flex justify-between h-full mx-8 md:mx-12">
                 <div className="flex gap-2 p-2">
-                    {/* TODO: Botón o Link de registro  */}
                     <FaCircleUser className="self-center text-xl md:text-2xl text-slate-600" />
+                    {/* TODO: Botón o Link de registro  */}
                     <button className="text-[0.8rem] md:text-base tracking-wide text-red-500 transition-myTransition hover:text-red-800 ">Entrar |  Registrarse</button>
                 </div>
 
