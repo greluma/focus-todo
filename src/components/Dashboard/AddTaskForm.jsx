@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useState } from "react"
 import { Form } from "react-router-dom"
 import { FaPlus } from "react-icons/fa6";
@@ -5,19 +7,21 @@ import { v4 as uniqueId } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../../features/dashboard/dashboardSlice";
 
-const AddTaskForm = () => {
+const AddTaskForm = ({ annadir, select }) => {
     const dispatch = useDispatch()
     const { data } = useSelector((state) => state.dashboard);
     const [isFocus, setIsFocus] = useState(false)
     const handleFocus = (newValor) => {
         setIsFocus(newValor)
     }
+    const { isSelect, selectValue } = select
     // const navigate = useNavigate()
 
     function addFormAction(e) {
         const formData = new FormData(e.target);
         const taskName = formData.get("name");
         const project = formData.get("projects");
+        console.log(project);
         const newTask = { id: uniqueId(), taskName, taskDescription: "", complete: false, taskTime: 0 }
         dispatch(addTask({ newTask, project }))
         e.target.reset();
@@ -40,23 +44,34 @@ const AddTaskForm = () => {
 
                         }} onBlur={() => {
                             handleFocus(false)
-                        }} type="text" placeholder="Añadir en Tareas [Enter] " className="w-full text-sm outline-none bg-slate-200 text-slate-700" name="name" />
+                        }} type="text" placeholder={`${annadir} [Enter] `} className="text-sm outline-none w-max bg-slate-200 text-slate-700" name="name" />
                     </div>
                     <select name="projects" id="projects" onFocus={() => {
                         handleFocus(true)
                     }} onBlur={() => {
                         handleFocus(false)
                     }} className={`${isFocus ? "shadow-md" : "shadow-none"
-                        } outline-slate-300 rounded-md text-xs bg-slate-300 p-1 tracking-wide font-semibold`}>
-                        {data.map((project) => {
-                            return (
-                                <option key={project.id} value={project.projectName}>{project.projectName}</option>
-                            )
-                        })}
+                        } outline-slate-300 rounded-md text-xs bg-slate-300 p-1 tracking-wide font-semibold ${!isSelect ? "hidden" : ""} `}>
+                        {!isSelect ? <option value={selectValue}>{selectValue}</option> :
+                            data.map((project) => {
+                                return (
+                                    <option key={project.id} value={project.projectName}>{project.projectName}</option>
+                                )
+                            })
+                        }
+
                     </select>
                 </div>
             </Form>
         </div>
     )
 }
+
+
+AddTaskForm.propTypes = {
+    annadir: PropTypes.string.isRequired,
+    select: PropTypes.object.isRequired,
+};
+
+
 export default AddTaskForm

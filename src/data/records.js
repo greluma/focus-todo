@@ -4,14 +4,14 @@ export const testData = [
   {
     projectName: "Sin Proyecto",
     id: uniqueId(),
-    color: "blue-500",
+    color: "#4b543b",
     projectTime: 0,
     tasks: [],
   },
   {
     projectName: "Proyecto 1",
     id: uniqueId(),
-    color: "red-500",
+    color: "#b4d2ba",
     projectTime: 0,
     tasks: [
       {
@@ -40,7 +40,7 @@ export const testData = [
   {
     projectName: "Proyecto 2",
     id: uniqueId(),
-    color: "blue-500",
+    color: "#B57F50",
     projectTime: 0,
     tasks: [
       {
@@ -55,7 +55,7 @@ export const testData = [
         taskName: "Proyecto 2 Tarea 2",
         taskDescription: "Descripcion de la tarea 2",
         complete: true,
-        taskTime: 20,
+        taskTime: 50,
       },
     ],
   },

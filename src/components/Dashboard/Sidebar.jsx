@@ -2,6 +2,7 @@ import { Form, Link } from "react-router-dom"
 import { FiSearch } from "react-icons/fi";
 import { BsFolderPlus } from "react-icons/bs";
 import LinksContainer from "./LinksContainer";
+import ProjectsContainer from "./ProjectsContainer";
 
 export default function Sidebar() {
     return (
@@ -10,8 +11,9 @@ export default function Sidebar() {
                 <FiSearch className="self-center text-slate-600" />
                 <input type="text" placeholder="Buscar" className="w-[90%] outline-slate-300 rounded-lg text-center tracking-wide text-sm md:text-base" />
             </Form>
-            <nav className="grid justify-center m-3">
+            <nav className="m-3 ">
                 <LinksContainer />
+                <ProjectsContainer />
             </nav>
             <div className="flex justify-center shadow-top" >
                 <Link to={"/dashboard/proyectos"} className="flex self-center gap-2 p-1 text-sm tracking-wide text-red-500 capitalize transition-myTransition hover:text-red-600"> <span className="self-center"><BsFolderPlus /></span>nuevo proyecto</Link>

@@ -6,7 +6,7 @@ import { cantTiempo, totalTareas } from "../../features/dashboard/dashboardUtils
 import AddTaskForm from "./AddTaskForm";
 
 
-export const TareasContainer = ({ list, title, formExist, infoTasksTitles }) => {
+export const TareasContainer = ({ list, title, formExist, infoTasksTitles, annadir, select }) => {
     return (
         <div className="grid gap-2">
             <div className="flex justify-between">
@@ -16,15 +16,17 @@ export const TareasContainer = ({ list, title, formExist, infoTasksTitles }) => 
                     <InfoTasks data={cantTiempo(list)} description={infoTasksTitles[1]} />
                 </InfoTaskContainer>
             </div>
-            {formExist && <AddTaskForm />}
+            {formExist && <AddTaskForm annadir={annadir} select={select} />}
             <TasksListContainer list={list} />
         </div>
     )
 }
 
 TareasContainer.propTypes = {
+    annadir: PropTypes.string,
     list: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     formExist: PropTypes.bool.isRequired,
     infoTasksTitles: PropTypes.array.isRequired,
+    select: PropTypes.object,
 };

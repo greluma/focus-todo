@@ -3,6 +3,7 @@ import { MdOutlineTaskAlt } from "react-icons/md";
 import { BiTask } from "react-icons/bi";
 import NavLinks from "./NavLinks";
 
+
 const mainLinks = [
     {
         to: "/dashboard/tareas",
@@ -22,6 +23,8 @@ const mainLinks = [
 ]
 
 export default function LinksContainer() {
+
+
     return (
         <ul className="grid self-start gap-2 pb-1 shadow-bottom">
             {mainLinks.map((link) => {
@@ -30,6 +33,7 @@ export default function LinksContainer() {
                     <NavLinks key={text} to={to} icon={icon} text={text} />
                 )
             })}
+
 
         </ul>
     )

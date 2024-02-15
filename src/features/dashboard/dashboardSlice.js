@@ -19,7 +19,6 @@ export const dashboardSlice = createSlice({
       });
     },
     addProject: (state, action) => {
-      console.log("hello desde el slice");
       const { newProject } = action.payload;
       state.data.push(newProject);
     },
