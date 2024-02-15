@@ -11,7 +11,7 @@ export default function AngleIcon({ icon, to, color, disable }) {
 
 AngleIcon.propTypes = {
     icon: PropTypes.element.isRequired,
-    to: PropTypes.string.isRequired,
+    to: PropTypes.string,
     color: PropTypes.string.isRequired,
     disable: PropTypes.bool
 }

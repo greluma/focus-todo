@@ -18,9 +18,14 @@ export const dashboardSlice = createSlice({
         }
       });
     },
+    addProject: (state, action) => {
+      console.log("hello desde el slice");
+      const { newProject } = action.payload;
+      state.data.push(newProject);
+    },
   },
 });
 
-export const { addTask } = dashboardSlice.actions;
+export const { addTask, addProject } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;

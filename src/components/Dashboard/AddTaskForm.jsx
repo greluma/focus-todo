@@ -1,11 +1,9 @@
 import { useState } from "react"
-import { Form, redirect } from "react-router-dom"
+import { Form } from "react-router-dom"
 import { FaPlus } from "react-icons/fa6";
 import { v4 as uniqueId } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../../features/dashboard/dashboardSlice";
-
-
 
 const AddTaskForm = () => {
     const dispatch = useDispatch()
@@ -14,7 +12,7 @@ const AddTaskForm = () => {
     const handleFocus = (newValor) => {
         setIsFocus(newValor)
     }
-
+    // const navigate = useNavigate()
 
     function addFormAction(e) {
         const formData = new FormData(e.target);
@@ -24,13 +22,16 @@ const AddTaskForm = () => {
         dispatch(addTask({ newTask, project }))
         e.target.reset();
         // * El redirect no funciona
-        return redirect("/dashboard/tareas");
+        // return redirect("/");
+        // * El navigate tampoco
+        // navigate("/")
+        // TODO: Que navegue hasta la ruta de editar la tarea recién creada
     }
 
     return (
         <div className={`bg-slate-200 py-2 px-3 rounded-xl flex transition-myTransition ${isFocus ? "shadow-md" : "shadow-none"
             }`}>
-            <Form method="get" id="create-task" onSubmit={addFormAction} className="w-full">
+            <Form id="create-task" onSubmit={addFormAction} className="w-full">
                 <div className="flex justify-between">
                     <div className="flex gap-1">
                         <span className="self-center text-xs text-slate-400" ><FaPlus /></span>

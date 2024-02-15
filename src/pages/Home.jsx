@@ -78,6 +78,7 @@ const Home = () => {
 
     return (
         <>
+
             <div className={`grid gap-4 p-4 min-h-[100vh] bg-center bg-cover transition duration-300 ease-in-out ${showBanner || isSoundListActive ? 'opacity-90' : ''}`} style={{ backgroundImage: `url(${image})` }}>
                 <div className="grid grid-cols-3 m-auto justify-items-start">
                     <AngleIcon icon={<FaAngleUp />} to="dashboard/tareas" color='text-slate-200' disable={isPomodoroActive} />

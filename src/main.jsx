@@ -10,6 +10,11 @@ import { Tareas } from './components/Dashboard/Tareas.jsx'
 import Completadas from './components/Dashboard/Completadas.jsx'
 import PorHacer from './components/Dashboard/PorHacer.jsx'
 import NewProject from './components/Dashboard/NewProject.jsx'
+import { addProjectAction } from './features/dashboard/dashboardActions.js'
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const router = createBrowserRouter([
   {
@@ -22,10 +27,12 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />,
+
         children: [
           {
             path: "/dashboard/tareas",
             element: <Tareas />,
+
           },
           {
             path: "/dashboard/completadas",
@@ -38,6 +45,7 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/proyectos",
             element: <NewProject />,
+            action: addProjectAction
           },
         ],
       },
@@ -51,6 +59,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <Provider store={store}>
     <RouterProvider router={router} />
+    <ToastContainer />
   </Provider>
   // </React.StrictMode>,
 )
