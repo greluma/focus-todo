@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import NavLinks from "./NavLinks";
 
 export default function ProjectsContainer() {
     const { data } = useSelector(state => state.dashboard);
@@ -10,12 +10,10 @@ export default function ProjectsContainer() {
         {data.map((project) => {
             const { id, projectName, color } = project;
             return (
-                <li key={id} className={`px-2 py-1 text-sm md:text-base font-semibold tracking-wide`} style={{ color: color }}>
-                    <NavLink to={`/dashboard/proyectos/${id}`}>{projectName}</NavLink>
-                </li>
+                <NavLinks key={id} to={`/dashboard/proyectos/${id}`} text={projectName} color={color} />
+
             )
         })}
     </ul>
-
 
 }

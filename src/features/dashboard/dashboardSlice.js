@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { testData } from "../../data/records";
+import { getLocalStorageData, setLocalStorageData } from "../../data/storage";
 
 const initialState = {
-  // TODO: el data inicialmente debe ser el localStorage o []
+  // data: getLocalStorageData(),
   data: testData,
 };
 
@@ -17,10 +18,12 @@ export const dashboardSlice = createSlice({
           item.tasks.push(newTask);
         }
       });
+      setLocalStorageData(state.data);
     },
     addProject: (state, action) => {
       const { newProject } = action.payload;
       state.data.push(newProject);
+      setLocalStorageData(state.data);
     },
   },
 });
