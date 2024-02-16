@@ -28,3 +28,18 @@ export function ordenarTareas(list) {
   });
   return list;
 }
+
+export function findProjectByTaskID(data, id) {
+  return data.find((project) => {
+    return project.tasks.some((task) => task.id === id);
+  });
+}
+
+export function findProjectByID(data, id) {
+  const res = data.find((project) => project.id === id);
+  return res;
+}
+
+export function findTaskByID(data, id) {
+  return data.find((project) => project.tasks.find((task) => task.id === id));
+}

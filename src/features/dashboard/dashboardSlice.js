@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { testData } from "../../data/records";
-import { setLocalStorageData } from "../../data/storage";
+// import { testData } from "../../data/records";
+import {
+  basicData,
+  getLocalStorageData,
+  setLocalStorageData,
+} from "../../data/storage";
 import callToast from "../../utils/callToast";
-// TODO: import getLocalStorageData
 
 const initialState = {
-  // data: getLocalStorageData(),
-  data: testData,
+  data: getLocalStorageData() || basicData,
+  // data: testData,
 };
 
 export const dashboardSlice = createSlice({
@@ -27,11 +30,26 @@ export const dashboardSlice = createSlice({
       const { newProject } = action.payload;
       state.data.push(newProject);
       setLocalStorageData(state.data);
-      callToast("Proyecto añadido");
+      callToast("Proyecto Añadido");
+    },
+    setComplete: (state, action) => {
+      const { projectId, taskId } = action.payload;
+      const project = state.data.find((project) => project.id === projectId);
+      const task = project.tasks.find((task) => task.id === taskId);
+      task.complete = !task.complete;
+      setLocalStorageData(state.data);
+    },
+    deleteTask: (state, action) => {
+      const { projectId, taskId } = action.payload;
+      const project = state.data.find((project) => project.id === projectId);
+      project.tasks = project.tasks.filter((task) => task.id !== taskId);
+      setLocalStorageData(state.data);
+      callToast("Tarea Eliminada");
     },
   },
 });
 
-export const { addTask, addProject } = dashboardSlice.actions;
+export const { addTask, addProject, setComplete, deleteTask } =
+  dashboardSlice.actions;
 
 export default dashboardSlice.reducer;

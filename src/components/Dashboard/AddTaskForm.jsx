@@ -21,7 +21,6 @@ const AddTaskForm = ({ annadir, select }) => {
         const formData = new FormData(e.target);
         const taskName = formData.get("name");
         const project = formData.get("projects");
-        console.log(project);
         const newTask = { id: uniqueId(), taskName, taskDescription: "", complete: false, taskTime: 0 }
         dispatch(addTask({ newTask, project }))
         e.target.reset();

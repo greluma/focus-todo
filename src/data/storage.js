@@ -1,6 +1,6 @@
 import { v4 as uniqueId } from "uuid";
 
-const basicData = [
+export const basicData = [
   {
     projectName: "Sin Proyecto",
     id: uniqueId(),
