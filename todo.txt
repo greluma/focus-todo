@@ -2,7 +2,7 @@ Funcionalidades:
 - Implementar reactQuery
 - Inicio de sesion
 - Manejar la carga de la imagen con el loader de browser route
-- Editar proyecto
+- Editar proyecto: cambiar color, nombre, y eliminar
 
 Estilos: 
 - Cambiar color de los iconos dependiendo del fondo

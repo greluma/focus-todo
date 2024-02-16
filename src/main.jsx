@@ -52,6 +52,10 @@ const router = createBrowserRouter([
             path: "/dashboard/proyectos/:projectId",
             element: <SpecificProject />,
           },
+          {
+            path: "/dashboard/:projectId/:taskId",
+            element: <div>Edita Tu tarea aquí</div>,
+          },
         ],
       },
     ]

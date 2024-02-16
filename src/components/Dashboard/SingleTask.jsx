@@ -4,19 +4,20 @@ import { MdDeleteOutline } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { FaRegCheckCircle } from "react-icons/fa";
 import TaskIcon from './TaskIcon';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { findProjectByTaskID } from '../../features/dashboard/dashboardUtils';
 import { useDispatch, useSelector } from 'react-redux';
 import { setComplete, deleteTask } from '../../features/dashboard/dashboardSlice';
 
 
 const SingleTask = ({ id: taskId, taskName, taskDescription, complete }) => {
-    // TODO: Add a EditTask component for the edit button con el id
     const { data } = useSelector(state => state.dashboard);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const project = useParams().projectId || findProjectByTaskID(data, taskId).id;
-    const dispatch = useDispatch();
 
+    // * handlers
     function handleComplete() {
         dispatch(setComplete({ projectId: project, taskId }));
     }
@@ -25,9 +26,15 @@ const SingleTask = ({ id: taskId, taskName, taskDescription, complete }) => {
         dispatch(deleteTask({ projectId: project, taskId }));
     }
 
+    function goToEdit() {
+        return navigate(`/dashboard/${project}/${taskId}`);
+    }
+
+    // * test function
     function test() {
         console.log('test');
     }
+
 
 
     return (
@@ -39,9 +46,8 @@ const SingleTask = ({ id: taskId, taskName, taskDescription, complete }) => {
             <h3 className='text-base'>{taskName}</h3>
             <p className='self-center text-sm'>{taskDescription}</p>
             <div className='flex gap-1'>
-                <TaskIcon icon={<FaEdit />} color='#E1CE26' handleFunction={test} />
+                <TaskIcon icon={<FaEdit />} color='#E1CE26' handleFunction={goToEdit} />
                 <TaskIcon icon={<MdDeleteOutline />} color='#ce1b1b' handleFunction={handleDelete} />
-
             </div>
         </div>
     )

@@ -1,15 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { testData } from "../../data/records";
+import { testData } from "../../data/records";
+
 import {
-  basicData,
-  getLocalStorageData,
+  // basicData,
+  // getLocalStorageData,
   setLocalStorageData,
 } from "../../data/storage";
 import callToast from "../../utils/callToast";
 
 const initialState = {
-  data: getLocalStorageData() || basicData,
-  // data: testData,
+  // data: getLocalStorageData() || basicData,
+  data: testData,
 };
 
 export const dashboardSlice = createSlice({
