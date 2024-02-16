@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { addProject } from "../../features/dashboard/dashboardSlice";
 
 
+
 const NewProject = () => {
     const [color, setColor] = useState("#E58AA1")
     function handleChangeColor(e) {

@@ -1,5 +1,4 @@
 import { v4 as uniqueId } from "uuid";
-import callToast from "../../utils/callToast";
 
 export async function addProjectAction({ request }) {
   const formData = await request.formData();
@@ -10,7 +9,6 @@ export async function addProjectAction({ request }) {
     projectTime: 0,
     tasks: [],
   };
-  callToast("Proyecto añadido", "success");
-  // TODO: Hacer que el input name se limpie
+  // TODO: Hacer que el input name se limpie al añadir un nuevo proyecto
   return newProject;
 }

@@ -1,8 +1,8 @@
 Funcionalidades:
-- Implementar route y reactQuery
+- Implementar reactQuery
 - Inicio de sesion
 - Manejar la carga de la imagen con el loader de browser route
-
+- Editar proyecto
 
 Estilos: 
 - Cambiar color de los iconos dependiendo del fondo

@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { testData } from "../../data/records";
-import { getLocalStorageData, setLocalStorageData } from "../../data/storage";
+import { setLocalStorageData } from "../../data/storage";
+import callToast from "../../utils/callToast";
+// TODO: import getLocalStorageData
 
 const initialState = {
   // data: getLocalStorageData(),
@@ -19,11 +21,13 @@ export const dashboardSlice = createSlice({
         }
       });
       setLocalStorageData(state.data);
+      callToast("Tarea añadida");
     },
     addProject: (state, action) => {
       const { newProject } = action.payload;
       state.data.push(newProject);
       setLocalStorageData(state.data);
+      callToast("Proyecto añadido");
     },
   },
 });

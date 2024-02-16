@@ -6,14 +6,15 @@ import { cantTiempo, totalTareas } from "../../features/dashboard/dashboardUtils
 import AddTaskForm from "./AddTaskForm";
 
 
-export const TareasContainer = ({ list, title, formExist, infoTasksTitles, annadir, select }) => {
+export const TareasContainer = ({ list, title, formExist, infoTasksTitles, annadir, select, color = "#4b543b" }) => {
+
     return (
-        <div className="grid gap-2">
+        <div style={{ "borderColor": color }} className="grid gap-3 md:gap-4 border p-4 rounded-xl shadow-xl">
             <div className="flex justify-between">
-                <h2 className="self-center font-semibold tracking-widest">{title}</h2>
+                <h2 style={{ color: color }} className="self-center font-semibold tracking-widest shadow-bottom">{title}</h2>
                 <InfoTaskContainer>
-                    <InfoTasks data={totalTareas(list)} description={infoTasksTitles[0]} />
-                    <InfoTasks data={cantTiempo(list)} description={infoTasksTitles[1]} />
+                    <InfoTasks data={totalTareas(list)} description={infoTasksTitles[0]} color={color} />
+                    <InfoTasks data={cantTiempo(list)} description={infoTasksTitles[1]} color={color} />
                 </InfoTaskContainer>
             </div>
             {formExist && <AddTaskForm annadir={annadir} select={select} />}
@@ -29,4 +30,5 @@ TareasContainer.propTypes = {
     formExist: PropTypes.bool.isRequired,
     infoTasksTitles: PropTypes.array.isRequired,
     select: PropTypes.object,
+    color: PropTypes.string,
 };

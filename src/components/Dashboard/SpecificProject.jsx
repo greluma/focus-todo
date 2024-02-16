@@ -6,9 +6,9 @@ export default function SpecificProject() {
     const { data } = useSelector(state => state.dashboard);
     const { projectId } = useParams();
     const project = data.find(project => project.id === projectId);
-    const { tasks, projectName } = project;
+    const { tasks, projectName, color } = project;
 
-    const tareasProps = { list: tasks, title: projectName, formExist: true, infoTasksTitles: ["Total de Tareas", "Tiempo Transcurrido (mins)"], annadir: project.projectName, select: { isSelect: false, selectValue: projectName } }
+    const tareasProps = { list: tasks, title: projectName, formExist: true, infoTasksTitles: ["Total de Tareas", "Tiempo Transcurrido (mins)"], annadir: project.projectName, select: { isSelect: false, selectValue: projectName }, color: color }
     return (
         <TareasContainer {...tareasProps} />
     )
