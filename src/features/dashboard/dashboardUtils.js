@@ -41,5 +41,12 @@ export function findProjectByID(data, id) {
 }
 
 export function findTaskByID(data, id) {
-  return data.find((project) => project.tasks.find((task) => task.id === id));
+  return data.reduce((acc, curr) => {
+    curr.tasks.forEach((task) => {
+      if (task.id === id) {
+        acc = task;
+      }
+    });
+    return acc;
+  }, {});
 }

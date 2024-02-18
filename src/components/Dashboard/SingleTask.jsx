@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setComplete, deleteTask } from '../../features/dashboard/dashboardSlice';
 
 
-const SingleTask = ({ id: taskId, taskName, taskDescription, complete }) => {
+const SingleTask = ({ id: taskId, taskName, taskDescription, complete, taskTime }) => {
     const { data } = useSelector(state => state.dashboard);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -41,7 +41,10 @@ const SingleTask = ({ id: taskId, taskName, taskDescription, complete }) => {
         <div className={`flex gap-2 justify-between px-2 py-1 tracking-wide border rounded-md  shadow-md  ${complete ? "bg-slate-500 border-slate-800 text-slate-300" : "bg-slate-200 border-slate-300"}`}>
             <div className='flex gap-1'>
                 <TaskIcon icon={<FaRegCheckCircle />} color='#50DD3E' handleFunction={handleComplete} />
-                <TaskIcon icon={<TbClockShare />} color='#70D6FF' handleFunction={test} />
+                <div className='flex gap-1'>
+                    <TaskIcon icon={<TbClockShare />} color='#70D6FF' handleFunction={test} />
+                    <span className='text-xs font-semibold tracking-widest'>{taskTime}m</span>
+                </div>
             </div>
             <h3 className='text-base'>{taskName}</h3>
             <p className='self-center text-sm'>{taskDescription}</p>
@@ -58,6 +61,7 @@ SingleTask.propTypes = {
     taskName: PropTypes.string.isRequired,
     taskDescription: PropTypes.string.isRequired,
     complete: PropTypes.bool.isRequired,
+    taskTime: PropTypes.number.isRequired
 }
 
 export default SingleTask

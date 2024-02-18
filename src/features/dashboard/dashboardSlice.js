@@ -47,10 +47,24 @@ export const dashboardSlice = createSlice({
       setLocalStorageData(state.data);
       callToast("Tarea Eliminada");
     },
+    editTask: (state, action) => {
+      const {
+        projectId,
+        taskId,
+        editedTask: { taskName, taskDescription, complete },
+      } = action.payload;
+      const project = state.data.find((project) => project.id === projectId);
+      const task = project.tasks.find((task) => task.id === taskId);
+      task.taskName = taskName;
+      task.taskDescription = taskDescription;
+      task.complete = complete;
+      setLocalStorageData(state.data);
+      callToast("Tarea Editada");
+    },
   },
 });
 
-export const { addTask, addProject, setComplete, deleteTask } =
+export const { addTask, addProject, setComplete, deleteTask, editTask } =
   dashboardSlice.actions;
 
 export default dashboardSlice.reducer;

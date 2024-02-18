@@ -3,6 +3,7 @@ Funcionalidades:
 - Inicio de sesion
 - Manejar la carga de la imagen con el loader de browser route
 - Editar proyecto: cambiar color, nombre, y eliminar
+- No mostrar proyecto en el navbar si esta vacio
 
 Estilos: 
 - Cambiar color de los iconos dependiendo del fondo

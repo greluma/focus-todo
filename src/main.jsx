@@ -14,6 +14,7 @@ import { addProjectAction } from './features/dashboard/dashboardActions.js'
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import SpecificProject from './components/Dashboard/SpecificProject.jsx'
+import TaskEdit from './components/Dashboard/TaskEdit.jsx'
 
 
 
@@ -54,7 +55,7 @@ const router = createBrowserRouter([
           },
           {
             path: "/dashboard/:projectId/:taskId",
-            element: <div>Edita Tu tarea aquí</div>,
+            element: <TaskEdit />,
           },
         ],
       },
