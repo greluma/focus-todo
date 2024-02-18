@@ -10,7 +10,6 @@ import { Tareas } from './components/Dashboard/Tareas.jsx'
 import Completadas from './components/Dashboard/Completadas.jsx'
 import PorHacer from './components/Dashboard/PorHacer.jsx'
 import NewProject from './components/Dashboard/NewProject.jsx'
-import { addProjectAction } from './features/dashboard/dashboardActions.js'
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import SpecificProject from './components/Dashboard/SpecificProject.jsx'
@@ -47,11 +46,16 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/proyectos",
             element: <NewProject />,
-            action: addProjectAction
           },
           {
             path: "/dashboard/proyectos/:projectId",
             element: <SpecificProject />,
+          },
+          {
+            path: "/dashboard/proyectos/:projectId/edit",
+            element: <div>
+              Edita tu Proyecto aquí
+            </div>,
           },
           {
             path: "/dashboard/:projectId/:taskId",

@@ -7,7 +7,7 @@ function callToast(text, tipo = "success") {
       textAlign: "center",
       margin: "auto",
     },
-    autoClose: false,
+    autoClose: 3000,
   });
 }
 

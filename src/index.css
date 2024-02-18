@@ -114,3 +114,10 @@ html,
 body {
   height: 100%;
 }
+
+/* input[type="color"] {
+  width: 4em;
+  height: 2em;
+  border-radius: 50%;
+  cursor: pointer;
+} */
