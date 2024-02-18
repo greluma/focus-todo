@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
-import { NavLink, useNavigate, useMatch } from "react-router-dom"
-import { MdEdit } from "react-icons/md";
+import { NavLink, useMatch } from "react-router-dom"
 
-export default function NavLinks({ id, to, icon, text, color, edit }) {
+export default function NavLinks({ to, icon, text, color }) {
     const match = useMatch(to);
-    const navigate = useNavigate();
 
     return (
         <li style={{ color: color }} className='flex justify-between'>
@@ -14,11 +12,6 @@ export default function NavLinks({ id, to, icon, text, color, edit }) {
                     <h2>{text}</h2>
                 </div>
             </NavLink>
-            {edit && <button onClick={() => {
-                navigate(`/dashboard/proyectos/${id}/edit`)
-            }} className='text-lg'>
-                <MdEdit />
-            </button>}
         </li>
     )
 }

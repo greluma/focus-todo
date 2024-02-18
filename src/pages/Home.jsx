@@ -82,7 +82,7 @@ const Home = () => {
             <div className={`grid gap-4 p-4 min-h-[100vh] bg-center bg-cover transition duration-300 ease-in-out ${showBanner || isSoundListActive ? 'opacity-90' : ''}`} style={{ backgroundImage: `url(${image})` }}>
                 <div className="grid grid-cols-3 m-auto justify-items-start">
                     <AngleIcon icon={<FaAngleUp />} to="dashboard/tareas" color='text-slate-200' disable={isPomodoroActive} />
-                    <button className="py-2 text-sm font-bold tracking-wider transition duration-500 ease-in-out rounded-full md:text-base bg-slate-700 text-slate-300 px-7 justify-self-center hover:bg-slate-300 hover:text-slate-700">{isSmallScreen ? 'Tarea...' : 'Seleccione una tarea...'}</button>
+                    <button className="px-4 py-2 text-sm font-bold tracking-wider transition duration-500 ease-in-out rounded-full md:text-base bg-slate-700 text-slate-300 justify-self-center hover:bg-slate-300 hover:text-slate-700">{isSmallScreen ? 'Tarea...' : 'Seleccionar tarea...'}</button>
                 </div>
                 <div className="h-[50vh] self-center grid justify-center content-center gap-5">
                     <div className="flex items-center justify-center">

@@ -52,12 +52,6 @@ const router = createBrowserRouter([
             element: <SpecificProject />,
           },
           {
-            path: "/dashboard/proyectos/:projectId/edit",
-            element: <div>
-              Edita tu Proyecto aquí
-            </div>,
-          },
-          {
             path: "/dashboard/:projectId/:taskId",
             element: <TaskEdit />,
           },

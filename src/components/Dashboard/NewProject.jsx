@@ -9,7 +9,7 @@ import { v4 as uniqueId } from "uuid";
 
 
 const NewProject = () => {
-    const [color, setColor] = useState("#E58AA1")
+    const [color, setColor] = useState("#eb5e4b")
     function handleChangeColor(e) {
         setColor(e.target.value)
     }

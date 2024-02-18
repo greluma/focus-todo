@@ -9,7 +9,7 @@ export default function ProjectsContainer() {
             const { id, projectName, color, tasks } = project;
             if (projectName === "Sin Proyecto" && tasks.length === 0) return null;
             return (
-                <NavLinks key={id} to={`/dashboard/proyectos/${id}`} text={projectName} color={color} edit={true} id={id} />
+                <NavLinks key={id} to={`/dashboard/proyectos/${id}`} text={projectName} color={color} edit={true} />
 
             )
         })}
